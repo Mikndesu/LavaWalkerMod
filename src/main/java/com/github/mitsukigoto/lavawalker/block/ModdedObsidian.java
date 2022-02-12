@@ -50,7 +50,7 @@ public class ModdedObsidian extends Block {
 
     private void melt(BlockState blockState, World world, BlockPos blockPos) {
         world.setBlockAndUpdate(blockPos, BlockInit.MODDED_CRYING_OBSIDIAN.get().defaultBlockState());
-        world.getBlockTicks().scheduleTick(blockPos, BlockInit.MODDED_CRYING_OBSIDIAN.get(), MathHelper.nextInt(world.getRandom(), 60, 120));
+        world.getBlockTicks().scheduleTick(blockPos, BlockInit.MODDED_CRYING_OBSIDIAN.get(), MathHelper.nextInt(world.getRandom(), 20, 40));
     }
 
 }
