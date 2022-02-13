@@ -1,32 +1,32 @@
-modLoader="javafml" #mandatory
+modLoader="javafml"
 loaderVersion="[36,)"
 license="All rights reserved"
-[[mods]] #mandatory
-modId="lava_walker" #mandatory
-version="${file.jarVersion}" #mandatory
-displayName="LavaWalker Enchantment" #mandatory
-# logoFile="examplemod.png" #optional
-authors="Mitsuki Goto" #optional
-# The description text for the mod (multi line!) (#mandatory)
+[[mods]]
+modId="lava_walker"
+version="1.16.5-0.0.1"
+displayName="LavaWalker Enchantment"
+# logoFile="examplemod.png"
+authors="Mitsuki"
 description='''
+This mod adds LavaWalker Enchantment which
+creates obsidian block as you walk over the
+lava. As time passes, created obsidian will
+be lava through crying obsidian.
+
+このModは溶岩渡りのエンチャントを追加します。バニラの
+氷渡りのように溶岩の上を歩く時黒曜石を生成します。生成
+された黒曜石は時間経過で泣く黒曜石を通して溶岩ブロック
+に戻ります。
 '''
-# A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
-[[dependencies.lava_walker]] #optional
-    # the modid of the dependency
-    modId="forge" #mandatory
-    # Does this dependency have to exist - if not, ordering below must be specified
-    mandatory=true #mandatory
-    # The version range of the dependency
-    versionRange="[36,)" #mandatory
-    # An ordering relationship for the dependency - BEFORE or AFTER required if the relationship is not mandatory
+[[dependencies.lava_walker]]
+    modId="forge"
+    mandatory=true
+    versionRange="[36,)"
     ordering="NONE"
-    # Side this dependency is applied on - BOTH, CLIENT or SERVER
     side="BOTH"
-# Here's another dependency
 [[dependencies.lava_walker]]
     modId="minecraft"
     mandatory=true
-# This version range declares a minimum of the current minecraft version up to but not including the next major version
     versionRange="[1.16.5,1.17)"
     ordering="NONE"
     side="BOTH"
