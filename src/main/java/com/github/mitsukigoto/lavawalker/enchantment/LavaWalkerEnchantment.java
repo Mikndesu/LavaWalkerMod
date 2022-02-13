@@ -1,5 +1,6 @@
 package com.github.mitsukigoto.lavawalker.enchantment;
 
+import com.github.mitsukigoto.lavawalker.config.LavaWalkerConfig;
 import com.github.mitsukigoto.lavawalker.init.BlockInit;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -34,13 +35,13 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 2;
+        return LavaWalkerConfig.max_enchantment_level.get();
     }
 
     public static void onEntityMoved(LivingEntity livingEntity, World world, BlockPos blockPos, int level) {
         if (livingEntity.isOnGround()) {
             BlockState blockstate = BlockInit.MODDED_OBSIDIAN.get().defaultBlockState();
-            float f = (float) Math.min(16, 2 + level);
+            float f = (float) (2+level);
             BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
             for (BlockPos blockpos : BlockPos.betweenClosed(blockPos.offset((double) (-f), -1.0D, (double) (-f)), blockPos.offset((double) f, -1.0D, (double) f))) {
                 if (blockpos.closerThan(livingEntity.position(), (double) f)) {
