@@ -1,7 +1,7 @@
-package com.github.mitsukigoto.lavawalker.init;
+package com.github.mikn.lavawalker.init;
 
-import com.github.mitsukigoto.lavawalker.LavaWalker;
-import com.github.mitsukigoto.lavawalker.enchantment.LavaWalkerEnchantment;
+import com.github.mikn.lavawalker.LavaWalker;
+import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EquipmentSlotType;
 import net.minecraftforge.fml.RegistryObject;

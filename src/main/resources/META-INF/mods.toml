@@ -6,7 +6,7 @@ modId="lava_walker"
 version="1.16.5-0.3"
 displayName="LavaWalker Enchantment"
 # logoFile="examplemod.png"
-authors="Mitsuki"
+authors="Mikn"
 description='''
 This mod adds LavaWalker Enchantment which
 creates obsidian block as you walk over the

@@ -1,6 +1,6 @@
-package com.github.mitsukigoto.lavawalker.asm.mixin;
+package com.github.mikn.lavawalker.asm.mixin;
 
-import com.github.mitsukigoto.lavawalker.init.EnchantmentInit;
+import com.github.mikn.lavawalker.init.EnchantmentInit;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentType;
 import net.minecraft.enchantment.Enchantments;

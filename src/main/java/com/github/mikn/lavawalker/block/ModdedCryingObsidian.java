@@ -1,4 +1,4 @@
-package com.github.mitsukigoto.lavawalker.block;
+package com.github.mikn.lavawalker.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;

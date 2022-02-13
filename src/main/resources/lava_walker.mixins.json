@@ -1,6 +1,6 @@
 {
   "required": true,
-  "package": "com.github.mitsukigoto.lavawalker.asm.mixin",
+  "package": "com.github.mikn.lavawalker.asm.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "lava_walker.refmap.json",
   "mixins": [

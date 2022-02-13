@@ -16,7 +16,7 @@ apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
 version = '1.16.5-0.3'
-group = 'com.mitsukigoto.lava_walker' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'com.mikn.lava_walker' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = 'lava_walker'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(8) // Mojang ships Java 8 to end users, so your mod should target Java 8.
@@ -155,11 +155,11 @@ jar {
     manifest {
         attributes([
             "Specification-Title": "LavaWalker Enchantment",
-            "Specification-Vendor": "Mitsuki Goto",
+            "Specification-Vendor": "Mikn",
             "Specification-Version": "1", // We are version 1 of ourselves
             "Implementation-Title": project.name,
             "Implementation-Version": "${version}",
-            "Implementation-Vendor" :"Mitsuki Goto",
+            "Implementation-Vendor" :"Mikn",
             "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
         ])
     }

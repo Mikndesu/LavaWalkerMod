@@ -1,9 +1,8 @@
-package com.github.mitsukigoto.lavawalker.block;
+package com.github.mikn.lavawalker.block;
 
-import com.github.mitsukigoto.lavawalker.init.BlockInit;
+import com.github.mikn.lavawalker.init.BlockInit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.state.StateContainer;

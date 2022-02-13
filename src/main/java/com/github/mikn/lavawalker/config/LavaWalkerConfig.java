@@ -1,4 +1,4 @@
-package com.github.mitsukigoto.lavawalker.config;
+package com.github.mikn.lavawalker.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
 

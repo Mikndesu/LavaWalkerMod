@@ -1,8 +1,8 @@
-package com.github.mitsukigoto.lavawalker.init;
+package com.github.mikn.lavawalker.init;
 
-import com.github.mitsukigoto.lavawalker.LavaWalker;
-import com.github.mitsukigoto.lavawalker.block.ModdedCryingObsidian;
-import com.github.mitsukigoto.lavawalker.block.ModdedObsidian;
+import com.github.mikn.lavawalker.LavaWalker;
+import com.github.mikn.lavawalker.block.ModdedCryingObsidian;
+import com.github.mikn.lavawalker.block.ModdedObsidian;
 import net.minecraft.block.Block;
 import net.minecraftforge.fml.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;

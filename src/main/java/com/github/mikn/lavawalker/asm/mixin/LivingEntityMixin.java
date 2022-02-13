@@ -1,7 +1,7 @@
-package com.github.mitsukigoto.lavawalker.asm.mixin;
+package com.github.mikn.lavawalker.asm.mixin;
 
-import com.github.mitsukigoto.lavawalker.enchantment.LavaWalkerEnchantment;
-import com.github.mitsukigoto.lavawalker.init.EnchantmentInit;
+import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
+import com.github.mikn.lavawalker.init.EnchantmentInit;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.util.math.BlockPos;

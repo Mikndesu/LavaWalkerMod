@@ -1,20 +1,11 @@
-package com.github.mitsukigoto.lavawalker;
+package com.github.mikn.lavawalker;
 
-import com.github.mitsukigoto.lavawalker.config.LavaWalkerConfig;
-import com.github.mitsukigoto.lavawalker.init.BlockInit;
-import com.github.mitsukigoto.lavawalker.init.EnchantmentInit;
-import com.github.mitsukigoto.lavawalker.init.ItemInit;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.enchantment.Enchantments;
-import net.minecraft.enchantment.FrostWalkerEnchantment;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.inventory.EquipmentSlotType;
-import net.minecraft.item.ItemStack;
+import com.github.mikn.lavawalker.config.LavaWalkerConfig;
+import com.github.mikn.lavawalker.init.BlockInit;
+import com.github.mikn.lavawalker.init.EnchantmentInit;
+import com.github.mikn.lavawalker.init.ItemInit;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
