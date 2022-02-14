@@ -1,5 +1,6 @@
-package com.github.mitsukigoto.lavawalker;
+package com.github.mikn.lavawalker;
 
+import com.github.mikn.lavawalker.init.EnchantmentInit;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -17,7 +18,7 @@ public class LavaWalker {
     public LavaWalker() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 //        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, HisabisaConfig.SPEC, "hisabisamod-common.toml");
-//        EnchantmentInit.ENCHANTMENTS.register(bus);
+        EnchantmentInit.ENCHANTMENTS.register(bus);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
