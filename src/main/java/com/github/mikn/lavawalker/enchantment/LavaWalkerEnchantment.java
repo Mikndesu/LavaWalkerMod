@@ -1,5 +1,6 @@
 package com.github.mikn.lavawalker.enchantment;
 
+import com.github.mikn.lavawalker.config.LavaWalkerConfig;
 import com.github.mikn.lavawalker.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
@@ -33,7 +34,7 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 2;
+        return LavaWalkerConfig.max_enchantment_level.get();
     }
 
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
@@ -50,7 +51,7 @@ public class LavaWalkerEnchantment extends Enchantment {
                         boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
                         if (blockstate2.getMaterial() == Material.LAVA && isFull && blockstate.canSurvive(level, blockpos) && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(livingEntity, net.minecraftforge.common.util.BlockSnapshot.create(level.dimension(), level, blockpos), net.minecraft.core.Direction.UP)) {
                             level.setBlockAndUpdate(blockpos, blockstate);
-                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN.get(), Mth.nextInt(level.getRandom(), 60, 120));
+                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN.get(), Mth.nextInt(level.getRandom(), 20, 40));
                         }
                     }
                 }
