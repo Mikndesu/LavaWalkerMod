@@ -1,5 +1,6 @@
 package com.github.mikn.lavawalker.enchantment;
 
+import com.github.mikn.lavawalker.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -35,22 +36,21 @@ public class LavaWalkerEnchantment extends Enchantment {
         return 2;
     }
 
-    public static void onEntityMoved(LivingEntity p_45019_, Level p_45020_, BlockPos p_45021_, int p_45022_) {
-        if (p_45019_.isOnGround()) {
-            BlockState blockstate = Blocks.FROSTED_ICE.defaultBlockState();
-            float f = (float)Math.min(16, 2 + p_45022_);
+    public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
+        if (livingEntity.isOnGround()) {
+            BlockState blockstate = BlockInit.MODDED_OBSIDIAN.get().defaultBlockState();
+            float f = 2+enchantmentLevel;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-
-            for(BlockPos blockpos : BlockPos.betweenClosed(p_45021_.offset((double)(-f), -1.0D, (double)(-f)), p_45021_.offset((double)f, -1.0D, (double)f))) {
-                if (blockpos.closerThan(p_45019_.position(), (double)f)) {
+            for(BlockPos blockpos : BlockPos.betweenClosed(blockPos.offset((double)(-f), -1.0D, (double)(-f)), blockPos.offset((double)f, -1.0D, (double)f))) {
+                if (blockpos.closerThan(livingEntity.position(), (double)f)) {
                     blockpos$mutableblockpos.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                    BlockState blockstate1 = p_45020_.getBlockState(blockpos$mutableblockpos);
+                    BlockState blockstate1 = level.getBlockState(blockpos$mutableblockpos);
                     if (blockstate1.isAir()) {
-                        BlockState blockstate2 = p_45020_.getBlockState(blockpos);
-                        boolean isFull = blockstate2.getBlock() == Blocks.WATER && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
-                        if (blockstate2.getMaterial() == Material.WATER && isFull && blockstate.canSurvive(p_45020_, blockpos) && p_45020_.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(p_45019_, net.minecraftforge.common.util.BlockSnapshot.create(p_45020_.dimension(), p_45020_, blockpos), net.minecraft.core.Direction.UP)) {
-                            p_45020_.setBlockAndUpdate(blockpos, blockstate);
-                            p_45020_.scheduleTick(blockpos, Blocks.FROSTED_ICE, Mth.nextInt(p_45019_.getRandom(), 60, 120));
+                        BlockState blockstate2 = level.getBlockState(blockpos);
+                        boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
+                        if (blockstate2.getMaterial() == Material.LAVA && isFull && blockstate.canSurvive(level, blockpos) && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(livingEntity, net.minecraftforge.common.util.BlockSnapshot.create(level.dimension(), level, blockpos), net.minecraft.core.Direction.UP)) {
+                            level.setBlockAndUpdate(blockpos, blockstate);
+                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN.get(), Mth.nextInt(level.getRandom(), 60, 120));
                         }
                     }
                 }
