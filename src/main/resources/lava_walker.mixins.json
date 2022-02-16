@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "lava_walker.refmap.json",
   "mixins": [
+    "EntityLivingBaseMixin",
     "FrostWalkerEnchantmentMixin"
   ],
   "client": [
