@@ -7,7 +7,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLConstructionEvent;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,7 +16,7 @@ public class LavaWalker {
     public static final String MODID="lava_walker";
     public static final Logger LOGGER = LogManager.getLogger("LavaWalker/Main");
 
-    public static final Enchantment LAVA_WAKER = new LavaWalkerEnchantment(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] {EntityEquipmentSlot.FEET});
+    public static final Enchantment LAVA_WALKER = new LavaWalkerEnchantment(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] {EntityEquipmentSlot.FEET});
 
     @Mod.EventHandler
     public void construct(FMLConstructionEvent event) {
@@ -26,6 +25,6 @@ public class LavaWalker {
 
     @SubscribeEvent
     public void registerEnchantments(RegistryEvent.Register<Enchantment> evt) {
-        evt.getRegistry().register(LAVA_WAKER);
+        evt.getRegistry().register(LAVA_WALKER);
     }
 }
