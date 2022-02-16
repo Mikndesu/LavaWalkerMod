@@ -48,7 +48,7 @@ public class LavaWalkerEnchantment extends Enchantment
     {
         if (living.onGround)
         {
-            float f = (float)Math.min(16, 2 + level);
+            float f = 2+level;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos(0, 0, 0);
 
             for (BlockPos.MutableBlockPos blockpos$mutableblockpos1 : BlockPos.getAllInBoxMutable(pos.add((double)(-f), -1.0D, (double)(-f)), pos.add((double)f, -1.0D, (double)f)))
