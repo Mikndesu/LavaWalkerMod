@@ -74,8 +74,8 @@ public class LavaWalkerEnchantment extends Enchantment
         }
     }
 
-    public boolean canApplyTogether(Enchantment ench)
+    public boolean canApplyTogether(Enchantment enchantment)
     {
-        return super.canApplyTogether(ench) && ench != Enchantments.DEPTH_STRIDER;
+        return super.canApplyTogether(enchantment) && enchantment != Enchantments.DEPTH_STRIDER && enchantment != Enchantments.FROST_WALKER;
     }
 }

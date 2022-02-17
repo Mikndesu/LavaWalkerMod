@@ -1,6 +1,5 @@
 package com.github.mikn.lava_walker;
 
-import com.github.mikn.lava_walker.block.ModdedCryingObsidian;
 import com.github.mikn.lava_walker.block.ModdedObsidian;
 import com.github.mikn.lava_walker.enchantment.LavaWalkerEnchantment;
 import net.minecraft.block.Block;
@@ -29,7 +28,6 @@ public class LavaWalker {
 
     public static final Enchantment LAVA_WALKER = new LavaWalkerEnchantment(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] {EntityEquipmentSlot.FEET});
     public static final Block MODDED_OBSIDIAN = new ModdedObsidian();
-    public static final Block MODDED_CRYING_OBSIDIAN = new ModdedCryingObsidian();
 
     @Mod.EventHandler
     public void construct(FMLConstructionEvent event) {
@@ -44,19 +42,16 @@ public class LavaWalker {
     @SubscribeEvent
     public void registerBlocks(RegistryEvent.Register<Block> evt) {
         evt.getRegistry().register(MODDED_OBSIDIAN);
-        evt.getRegistry().register(MODDED_CRYING_OBSIDIAN);
     }
 
     @SubscribeEvent
     public void registerItems(RegistryEvent.Register<Item> evt) {
         evt.getRegistry().register(new ItemBlock(MODDED_OBSIDIAN).setRegistryName(MODDED_OBSIDIAN.getRegistryName()).setTranslationKey("modded_obsidian"));
-        evt.getRegistry().register(new ItemBlock(MODDED_CRYING_OBSIDIAN).setRegistryName(MODDED_CRYING_OBSIDIAN.getRegistryName()).setTranslationKey("modded_crying_obsidian"));
     }
 
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public void registerModels(ModelRegistryEvent evt) {
         ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MODDED_OBSIDIAN), 0, new ModelResourceLocation(new ResourceLocation("lava_walker", "modded_obsidian"), "inventory"));
-        ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(MODDED_CRYING_OBSIDIAN), 0, new ModelResourceLocation(new ResourceLocation("lava_walker", "modded_crying_obsidian"), "inventory"));
     }
 }
