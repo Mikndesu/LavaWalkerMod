@@ -9,5 +9,6 @@ public class ModdedCryingObsidian extends Block {
         super(Material.ROCK);
         this.setHardness(50.0F).setResistance(2000.0F).setSoundType(SoundType.STONE);
         this.setRegistryName(LavaWalker.MODID, "modded_crying_obsidian");
+        this.setTranslationKey("modded_crying_obsidian");
     }
 }

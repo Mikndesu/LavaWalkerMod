@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures":
+  {
+    "all": "lava_walker:blocks/modded_crying_obsidian"
+  }
+}
