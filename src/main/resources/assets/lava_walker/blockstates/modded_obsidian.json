@@ -1,7 +1,6 @@
 {
   "variants": {
-    "normal": {
-      "model": "minecraft:obsidian"
-    }
+    "age=0": { "model": "obsidian" },
+    "age=1": { "model": "obsidian" }
   }
 }
