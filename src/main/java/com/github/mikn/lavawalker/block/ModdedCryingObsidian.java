@@ -18,13 +18,13 @@ import static net.minecraft.state.properties.BlockStateProperties.AGE_1;
 public class ModdedCryingObsidian extends Block {
 
     public ModdedCryingObsidian() {
-        super(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0f, 1200.0f).lightLevel((p_235435_0_)->10));
+        super(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0f, 1200.0f).lightLevel((p_235435_0_) -> 10));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE_1, Integer.valueOf(1)));
     }
 
     @Override
     public void tick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
-        if((random.nextInt(3) == 0 && this.slightlyMelt(blockState, serverWorld, blockPos))) {
+        if ((random.nextInt(3) == 0 && this.slightlyMelt(blockState, serverWorld, blockPos))) {
 
         } else {
             serverWorld.getBlockTicks().scheduleTick(blockPos, this, MathHelper.nextInt(random, 20, 40));
@@ -38,7 +38,7 @@ public class ModdedCryingObsidian extends Block {
 
     private boolean slightlyMelt(BlockState blockState, World world, BlockPos blockPos) {
         int i = blockState.getValue(AGE_1);
-        if(i < 1) {
+        if (i < 1) {
             world.setBlock(blockPos, blockState.setValue(AGE_1, Integer.valueOf(i + 1)), 2);
             return false;
         } else {

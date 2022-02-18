@@ -41,7 +41,7 @@ public class LavaWalkerEnchantment extends Enchantment {
     public static void onEntityMoved(LivingEntity livingEntity, World world, BlockPos blockPos, int level) {
         if (livingEntity.isOnGround()) {
             BlockState blockstate = BlockInit.MODDED_OBSIDIAN.get().defaultBlockState();
-            float f = (float) (2+level);
+            float f = (float) (2 + level);
             BlockPos.Mutable blockpos$mutable = new BlockPos.Mutable();
             for (BlockPos blockpos : BlockPos.betweenClosed(blockPos.offset((double) (-f), -1.0D, (double) (-f)), blockPos.offset((double) f, -1.0D, (double) f))) {
                 if (blockpos.closerThan(livingEntity.position(), (double) f)) {

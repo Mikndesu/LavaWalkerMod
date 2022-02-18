@@ -38,7 +38,7 @@ public class LavaWalker {
     public void onChangedBlock(OnChangedBlockEvent evt) {
         BlockPos blockPos = evt.getBlockPos();
         LivingEntity livingEntity = evt.getLivingEntity();
-        if(!LavaWalkerConfig.affectEnchantment.get()) {
+        if (!LavaWalkerConfig.affectEnchantment.get()) {
             evt.setCanceled(true);
             return;
         }
