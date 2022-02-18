@@ -40,10 +40,10 @@ public class LavaWalkerEnchantment extends Enchantment {
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
         if (livingEntity.isOnGround()) {
             BlockState blockstate = BlockInit.MODDED_OBSIDIAN.get().defaultBlockState();
-            float f = 2+enchantmentLevel;
+            float f = 2 + enchantmentLevel;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-            for(BlockPos blockpos : BlockPos.betweenClosed(blockPos.offset((double)(-f), -1.0D, (double)(-f)), blockPos.offset((double)f, -1.0D, (double)f))) {
-                if (blockpos.closerThan(livingEntity.position(), (double)f)) {
+            for (BlockPos blockpos : BlockPos.betweenClosed(blockPos.offset((double) (-f), -1.0D, (double) (-f)), blockPos.offset((double) f, -1.0D, (double) f))) {
+                if (blockpos.closerThan(livingEntity.position(), (double) f)) {
                     blockpos$mutableblockpos.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                     BlockState blockstate1 = level.getBlockState(blockpos$mutableblockpos);
                     if (blockstate1.isAir()) {
