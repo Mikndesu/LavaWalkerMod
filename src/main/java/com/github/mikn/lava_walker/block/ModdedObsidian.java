@@ -28,55 +28,42 @@ public class ModdedObsidian extends Block {
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE_1, 0));
     }
 
-    public int getMetaFromState(IBlockState state)
-    {
+    public int getMetaFromState(IBlockState state) {
         return state.getValue(AGE_1);
     }
 
-    public IBlockState getStateFromMeta(int meta)
-    {
+    public IBlockState getStateFromMeta(int meta) {
         return this.getDefaultState().withProperty(AGE_1, MathHelper.clamp(meta, 0, 3));
     }
 
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
-        if (rand.nextInt(3) == 0 )
-        {
+    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+        if (rand.nextInt(3) == 0) {
             this.slightlyMelt(worldIn, pos, state, rand);
-        }
-        else
-        {
+        } else {
             worldIn.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
         }
     }
 
-    protected void slightlyMelt(World worldIn, BlockPos pos, IBlockState state, Random rand)
-    {
+    protected void slightlyMelt(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         int i = (Integer) state.getValue(AGE_1);
 
-        if (i < 4)
-        {
+        if (i < 4) {
             worldIn.setBlockState(pos, state.withProperty(AGE_1, i + 1), 2);
             worldIn.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
-        }
-        else
-        {
+        } else {
             this.turnIntoLava(worldIn, pos);
         }
     }
 
-    protected void turnIntoLava(World worldIn, BlockPos pos)
-    {
+    protected void turnIntoLava(World worldIn, BlockPos pos) {
         worldIn.setBlockState(pos, Blocks.LAVA.getDefaultState());
     }
 
-    protected BlockStateContainer createBlockState()
-    {
-        return new BlockStateContainer(this, new IProperty[] {AGE_1});
+    protected BlockStateContainer createBlockState() {
+        return new BlockStateContainer(this, new IProperty[]{AGE_1});
     }
 
-    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state)
-    {
+    public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
         return ItemStack.EMPTY;
     }
 

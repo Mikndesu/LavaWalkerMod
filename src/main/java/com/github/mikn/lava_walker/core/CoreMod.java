@@ -31,7 +31,7 @@ public class CoreMod implements IFMLLoadingPlugin {
     @Override
     public void injectData(Map<String, Object> data) {
         MixinBootstrap.init();
-        Mixins.addConfiguration( LavaWalker.MODID + ".mixins.json");
+        Mixins.addConfiguration(LavaWalker.MODID + ".mixins.json");
         MixinEnvironment.getDefaultEnvironment().setObfuscationContext("searge");
     }
 

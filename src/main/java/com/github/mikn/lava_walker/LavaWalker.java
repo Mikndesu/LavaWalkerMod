@@ -23,10 +23,10 @@ import org.apache.logging.log4j.Logger;
 
 @Mod(modid = LavaWalker.MODID)
 public class LavaWalker {
-    public static final String MODID="lava_walker";
+    public static final String MODID = "lava_walker";
     public static final Logger LOGGER = LogManager.getLogger("LavaWalker/Main");
 
-    public static final Enchantment LAVA_WALKER = new LavaWalkerEnchantment(Enchantment.Rarity.RARE, new EntityEquipmentSlot[] {EntityEquipmentSlot.FEET});
+    public static final Enchantment LAVA_WALKER = new LavaWalkerEnchantment(Enchantment.Rarity.RARE, new EntityEquipmentSlot[]{EntityEquipmentSlot.FEET});
     public static final Block MODDED_OBSIDIAN = new ModdedObsidian();
 
     @Mod.EventHandler
