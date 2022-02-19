@@ -4,9 +4,17 @@ import com.github.mikn.lavawalker.config.LavaWalkerConfig;
 import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
+import net.minecraftforge.fml.VersionChecker;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -27,6 +35,17 @@ public class LavaWalker {
         ItemInit.ITEMS.register(bus);
         EnchantmentInit.ENCHANTMENTS.register(bus);
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    @SubscribeEvent
+    public void updateCheck(PlayerEvent.PlayerLoggedInEvent evt) {
+        ModContainer container = ModList.get().getModContainerById("lava_walker").get();
+        VersionChecker.Status status = VersionChecker.getResult(container.getModInfo()).status();
+        LOGGER.info(status);
+        if(status == VersionChecker.Status.OUTDATED) {
+            LocalPlayer player = Minecraft.getInstance().player;
+            player.sendMessage(new TextComponent("LavaWalker Mod: New Version Available!"),player.getUUID());
+        }
     }
 
 }
