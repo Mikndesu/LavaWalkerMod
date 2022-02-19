@@ -3,7 +3,7 @@
   "modid": "lava_walker",
   "name": "LavaWalker Enchantment",
   "description": "Add a LavaWalker Enchantment",
-  "version": "1.12.2-0.21",
+  "version": "0.3",
   "mcversion": "${mcversion}",
   "url": "",
   "updateUrl": "",
