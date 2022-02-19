@@ -3,7 +3,7 @@ loaderVersion="[36,)"
 license="All rights reserved"
 [[mods]]
 modId="lava_walker"
-version="0.2"
+version="0.3"
 displayName="LavaWalker Enchantment"
 updateJSONURL="https://raw.githubusercontent.com/MitsukiGoto/LavaWalkerMod/1.18.1/versions/versions.json"
 # logoFile="examplemod.png"
