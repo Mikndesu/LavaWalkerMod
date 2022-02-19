@@ -12,6 +12,8 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.ForgeVersion;
@@ -29,9 +31,11 @@ import net.minecraftforge.fml.relauncher.libraries.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = LavaWalker.MODID, updateJSON = "https://raw.githubusercontent.com/MitsukiGoto/LavaWalkerMod/1.12.2/versions/versions.json")
+@Mod(modid = LavaWalker.MODID, updateJSON = LavaWalker.UPDATE_URL)
 public class LavaWalker {
     public static final String MODID = "lava_walker";
+    public static final String VERSION = "0.21";
+    public static final String UPDATE_URL = "https://raw.githubusercontent.com/MitsukiGoto/LavaWalkerMod/1.12.2/versions/versions.json";
     public static final Logger LOGGER = LogManager.getLogger("LavaWalker/Main");
 
     public static final Enchantment LAVA_WALKER = new LavaWalkerEnchantment(Enchantment.Rarity.RARE, new EntityEquipmentSlot[]{EntityEquipmentSlot.FEET});
@@ -62,8 +66,9 @@ public class LavaWalker {
         ModContainer container = Loader.instance().getIndexedModList().get(MODID);
         ForgeVersion.Status status = ForgeVersion.getResult(container).status;
         LOGGER.info(status);
+        evt.player.sendMessage(new TextComponentString("Hi, There!"));
         if(status == ForgeVersion.Status.OUTDATED) {
-            Minecraft.getMinecraft().player.sendChatMessage("LavaWalker Mod: New Version Available!");
+            evt.player.sendMessage(new TextComponentString("LavaWalker Mod: New Version Available!"));
         }
     }
 

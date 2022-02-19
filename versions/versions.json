@@ -9,7 +9,7 @@
   },
   "1.12.2": {
     "0.3": "add support for forge version checker",
-    "0.21": "fix display name of lava walker and be ready for release"
+    "0.2.1": "fix display name of lava walker and be ready for release"
   },
   "promos": {
     "1.18.1-latest": "0.3",

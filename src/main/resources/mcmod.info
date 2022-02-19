@@ -5,12 +5,7 @@
   "description": "Add a LavaWalker Enchantment",
   "version": "0.3",
   "mcversion": "${mcversion}",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["Mikn"],
-  "credits": "The Forge and FML guys, for making this example",
-  "logoFile": "",
-  "screenshots": [],
-  "dependencies": []
+  "updateUrl": "https://raw.githubusercontent.com/MitsukiGoto/LavaWalkerMod/1.12.2/versions/versions.json",
+  "authorList": ["Mikn"]
 }
 ]
