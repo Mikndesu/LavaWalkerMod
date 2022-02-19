@@ -3,7 +3,7 @@ loaderVersion="[36,)"
 license="All rights reserved"
 [[mods]]
 modId="lava_walker"
-version="0.4"
+version="0.5"
 displayName="LavaWalker Enchantment"
 # logoFile="examplemod.png"
 authors="Mikn"
