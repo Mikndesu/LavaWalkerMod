@@ -2,5 +2,9 @@
   "1.16.5": {
     "0.4": "add one config, and add some changes but it does not affect its behaviour",
     "0.5": "delete Modded Crying Obsidian"
+  },
+  "promos": {
+    "1.12.2-latest": "0.5",
+    "1.16.5-recommended": "0.5"
   }
 }
