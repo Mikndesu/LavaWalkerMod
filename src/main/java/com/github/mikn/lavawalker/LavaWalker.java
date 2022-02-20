@@ -1,14 +1,19 @@
 package com.github.mikn.lavawalker;
 
 import com.github.mikn.lavawalker.config.LavaWalkerConfig;
+import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
+import com.github.mikn.lavawalker.event.OnChangedBlockEvent;
 import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
 import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -50,6 +55,20 @@ public class LavaWalker {
         if(status == VersionChecker.Status.OUTDATED) {
             Player player = evt.getPlayer();
             player.sendMessage(new TextComponent("LavaWalker Mod: New Version Available!"), player.getUUID());
+        }
+    }
+
+    @SubscribeEvent
+    public void onChangedBlock(OnChangedBlockEvent evt) {
+        BlockPos blockPos = evt.getBlockPos();
+        LivingEntity livingEntity = evt.getLivingEntity();
+        if (!LavaWalkerConfig.affectEnchantment.get()) {
+            evt.setCanceled(true);
+            return;
+        }
+        int k = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.LAVA_WALKER.get(), livingEntity);
+        if (k > 0) {
+            LavaWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, k);
         }
     }
 

@@ -1,5 +1,6 @@
 {
   "1.18.1": {
+    "0.4": "add one config, internal changes",
     "0.3": "add support for forge version checker",
     "0.2": "frost walker is incompatible with LavaWalker"
   },
@@ -10,7 +11,7 @@
   "promos": {
     "1.16.5-latest": "0.4",
     "1.16.5-recommended": "0.4",
-    "1.18.1-latest": "0.3",
-    "1.18.1-recommended": "0.3"
+    "1.18.1-latest": "0.4",
+    "1.18.1-recommended": "0.4"
   }
 }
