@@ -1,6 +1,7 @@
 package com.github.mikn.lava_walker.enchantment;
 
 import com.github.mikn.lava_walker.LavaWalker;
+import com.github.mikn.lava_walker.config.LavaWalkerConfig;
 import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -36,7 +37,7 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public int getMaxLevel() {
-        return 2;
+        return LavaWalkerConfig.CONFIG_TYPES.max_enchant_level;
     }
 
     public static void freezeNearby(EntityLivingBase living, World worldIn, BlockPos pos, int level) {

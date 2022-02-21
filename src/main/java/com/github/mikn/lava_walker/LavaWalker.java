@@ -1,18 +1,21 @@
 package com.github.mikn.lava_walker;
 
 import com.github.mikn.lava_walker.block.ModdedObsidian;
+import com.github.mikn.lava_walker.config.LavaWalkerConfig;
 import com.github.mikn.lava_walker.enchantment.LavaWalkerEnchantment;
-import ibxm.Player;
+import com.github.mikn.lava_walker.event.OnEntityUpdateEvent;
 import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.enchantment.Enchantment;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.enchantment.EnchantmentFrostWalker;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.init.Enchantments;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
@@ -27,14 +30,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.libraries.ModList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = LavaWalker.MODID, updateJSON = LavaWalker.UPDATE_URL)
 public class LavaWalker {
     public static final String MODID = "lava_walker";
-    public static final String VERSION = "0.21";
     public static final String UPDATE_URL = "https://raw.githubusercontent.com/MitsukiGoto/LavaWalkerMod/1.12.2/versions/versions.json";
     public static final Logger LOGGER = LogManager.getLogger("LavaWalker/Main");
 
@@ -66,9 +67,26 @@ public class LavaWalker {
         ModContainer container = Loader.instance().getIndexedModList().get(MODID);
         ForgeVersion.Status status = ForgeVersion.getResult(container).status;
         LOGGER.info(status);
-        evt.player.sendMessage(new TextComponentString("Hi, There!"));
         if(status == ForgeVersion.Status.OUTDATED) {
             evt.player.sendMessage(new TextComponentString("LavaWalker Mod: New Version Available!"));
+        }
+    }
+
+    @SubscribeEvent
+    public void onChangedBlock(OnEntityUpdateEvent evt) {
+        BlockPos blockPos = evt.getBlockPos();
+        EntityLivingBase entityLivingBase = evt.getLivingEntity();
+        if (!LavaWalkerConfig.CONFIG_TYPES.affectEnchantment) {
+            evt.setCanceled(true);
+            return;
+        }
+        int k = EnchantmentHelper.getMaxEnchantmentLevel(LavaWalker.LAVA_WALKER, entityLivingBase);
+        if (k > 0) {
+            LavaWalkerEnchantment.freezeNearby(entityLivingBase, entityLivingBase.world, blockPos, k);
+        }
+        int i = EnchantmentHelper.getMaxEnchantmentLevel(Enchantments.FROST_WALKER, entityLivingBase);
+        if (i > 0) {
+            EnchantmentFrostWalker.freezeNearby(entityLivingBase, entityLivingBase.world, blockPos, i);
         }
     }
 
