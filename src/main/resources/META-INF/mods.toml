@@ -3,7 +3,7 @@ loaderVersion="[36,)"
 license="All rights reserved"
 [[mods]]
 modId="lava_walker"
-version="0.5"
+version="0.6"
 displayName="LavaWalker Enchantment"
 # logoFile="examplemod.png"
 authors="Mikn"
@@ -12,12 +12,14 @@ description='''
 This mod adds LavaWalker Enchantment which
 creates obsidian block as you walk over the
 lava. As time passes, created obsidian will
-be lava through crying obsidian.
+be lava through crying obsidian. You can press
+J-Key to toggle enable/disable LavaWalker.
 
 このModは溶岩渡りのエンチャントを追加します。バニラの
 氷渡りのように溶岩の上を歩く時黒曜石を生成します。生成
 された黒曜石は時間経過で泣く黒曜石を通して溶岩ブロック
-に戻ります。
+に戻ります。Jキーを押すことで溶岩渡りのエンチャントの
+有効/無効を切り替えることができます。
 '''
 [[dependencies.lava_walker]]
     modId="forge"
