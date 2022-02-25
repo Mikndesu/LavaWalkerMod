@@ -4,6 +4,7 @@
     "0.2": "frost walker is incompatible with LavaWalker"
   },
   "1.16.5": {
+    "0.6.1": "fix: Server Crash issue",
     "0.6": "remove one config, add keybind j to toggle enable/disable LavaWalker",
     "0.5": "add support for forge version check",
     "0.4": "add one config, and add some changes but it does not affect its behaviour"

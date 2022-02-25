@@ -42,8 +42,6 @@ public class LavaWalker {
     private boolean isEnchantmentAvailable = true;
 
     public LavaWalker() {
-        keyBindings = new KeyBinding[1];
-        keyBindings[0] = new KeyBinding("Enable/Disable LavaWalker", GLFW.GLFW_KEY_J, "LavaWalker");
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, LavaWalkerConfig.SPEC, "lava_walker-common.toml");
         BlockInit.BLOCKS.register(bus);
@@ -54,6 +52,8 @@ public class LavaWalker {
     }
 
     private void doClientStuff(final FMLClientSetupEvent event) {
+        keyBindings = new KeyBinding[1];
+        keyBindings[0] = new KeyBinding("Enable/Disable LavaWalker", GLFW.GLFW_KEY_J, "LavaWalker");
         ClientRegistry.registerKeyBinding(keyBindings[0]);
     }
 
