@@ -6,6 +6,8 @@ import com.github.mikn.lavawalker.event.OnChangedBlockEvent;
 import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
+import com.github.mikn.lavawalker.network.Message;
+import com.github.mikn.lavawalker.network.Network;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.player.ClientPlayerEntity;
 import net.minecraft.client.settings.KeyBinding;
@@ -13,6 +15,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.enchantment.FrostWalkerEnchantment;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraftforge.client.event.InputEvent;
@@ -28,10 +31,14 @@ import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
+
+import java.util.ArrayList;
+import java.util.UUID;
 
 @Mod(LavaWalker.MODID)
 public class LavaWalker {
@@ -39,6 +46,7 @@ public class LavaWalker {
     public static final String MODID = "lava_walker";
     public static final Logger LOGGER = LogManager.getLogger("LavaWalker/Main");
     public static KeyBinding[] keyBindings;
+    public static ArrayList<UUID> availablePlayers;
     private boolean isEnchantmentAvailable = true;
 
     public LavaWalker() {
@@ -48,6 +56,7 @@ public class LavaWalker {
         ItemInit.ITEMS.register(bus);
         EnchantmentInit.ENCHANTMENTS.register(bus);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::doClientStuff);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -55,6 +64,11 @@ public class LavaWalker {
         keyBindings = new KeyBinding[1];
         keyBindings[0] = new KeyBinding("Enable/Disable LavaWalker", GLFW.GLFW_KEY_J, "LavaWalker");
         ClientRegistry.registerKeyBinding(keyBindings[0]);
+    }
+
+    private void commonSetup(final FMLCommonSetupEvent evt) {
+        Network.init();
+        availablePlayers = new ArrayList<>();
     }
 
     @SubscribeEvent
@@ -65,6 +79,7 @@ public class LavaWalker {
             } else {
                 sendClientMessage("LavaWalker Enchantment is available now");
             }
+            Network.CHANNEL.sendToServer(new Message(1));
             isEnchantmentAvailable = !isEnchantmentAvailable;
         }
     }
@@ -83,7 +98,7 @@ public class LavaWalker {
     public void onChangedBlock(OnChangedBlockEvent evt) {
         BlockPos blockPos = evt.getBlockPos();
         LivingEntity livingEntity = evt.getLivingEntity();
-        if (!isEnchantmentAvailable) {
+        if (livingEntity instanceof PlayerEntity && !isEnchantmentAvailable || availablePlayers.stream().anyMatch(s -> s.equals(livingEntity.getUUID()))) {
             int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FROST_WALKER, livingEntity);
             if (i > 0) {
                 FrostWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, i);
