@@ -8,7 +8,6 @@ import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
 import com.github.mikn.lavawalker.network.Message;
 import com.github.mikn.lavawalker.network.NetWork;
-import com.mojang.authlib.minecraft.client.MinecraftClient;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -39,7 +38,6 @@ import org.apache.logging.log4j.Logger;
 import org.lwjgl.glfw.GLFW;
 
 import java.util.ArrayList;
-import java.util.Objects;
 import java.util.UUID;
 
 
@@ -116,7 +114,7 @@ public class LavaWalker {
         }
     }
 
-    private void sendClientMessage(String message) {
+    public static void sendClientMessage(String message) {
         LocalPlayer player = Minecraft.getInstance().player;
         player.sendMessage(new TextComponent(message),player.getUUID());
     }
