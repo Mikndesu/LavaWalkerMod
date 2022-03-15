@@ -2,8 +2,6 @@
   "variants": {
     "age=0": { "model": "obsidian" },
     "age=1": { "model": "obsidian" },
-    "age=2": { "model": "lava_walker:modded_crying_obsidian" },
-    "age=3": { "model": "lava_walker:modded_crying_obsidian" },
-    "age=4": { "model": "lava_walker:modded_crying_obsidian" }
+    "age=2": { "model": "obsidian" }
   }
 }

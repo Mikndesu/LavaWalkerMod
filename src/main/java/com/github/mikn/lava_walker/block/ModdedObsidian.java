@@ -18,7 +18,7 @@ import java.util.Random;
 
 public class ModdedObsidian extends Block {
 
-    public static final PropertyInteger AGE_1 = PropertyInteger.create("age", 0, 5);
+    public static final PropertyInteger AGE_1 = PropertyInteger.create("age", 0, 2);
 
     public ModdedObsidian() {
         super(Material.ROCK);
@@ -37,7 +37,7 @@ public class ModdedObsidian extends Block {
     }
 
     public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
-        if (rand.nextInt(3) == 0) {
+        if (rand.nextInt(2) == 0) {
             this.slightlyMelt(worldIn, pos, state, rand);
         } else {
             worldIn.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
@@ -47,7 +47,7 @@ public class ModdedObsidian extends Block {
     protected void slightlyMelt(World worldIn, BlockPos pos, IBlockState state, Random rand) {
         int i = (Integer) state.getValue(AGE_1);
 
-        if (i < 4) {
+        if (i < 1) {
             worldIn.setBlockState(pos, state.withProperty(AGE_1, i + 1), 2);
             worldIn.scheduleUpdate(pos, this, MathHelper.getInt(rand, 20, 40));
         } else {

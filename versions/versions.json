@@ -8,6 +8,7 @@
     "0.4": "add one config, and add some changes but it does not affect its behaviour"
   },
   "1.12.2": {
+    "0.5": "add some internal changes, and accelerate speed of vanishment",
     "0.4": "add one config, and some internal changes",
     "0.3": "add support for forge version checker",
     "0.2.1": "fix display name of lava walker and be ready for release"
@@ -17,7 +18,7 @@
     "1.18.1-recommended": "0.3",
     "1.16.5-latest": "0.4",
     "1.16.5-recommended": "0.4",
-    "1.12.2-latest": "0.4",
-    "1.12.2-recommended": "0.4"
+    "1.12.2-latest": "0.5",
+    "1.12.2-recommended": "0.5"
   }
 }
