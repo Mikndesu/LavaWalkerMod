@@ -1,17 +1,11 @@
 package com.github.mikn.lavawalker;
 
-import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
 import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.FrostWalkerEnchantment;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

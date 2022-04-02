@@ -54,6 +54,10 @@ jar {
 	}
 }
 
+loom {
+	mixin.defaultRefmapName = "lava_walker.refmap.json"
+}
+
 // configure the maven publication
 publishing {
 	publications {

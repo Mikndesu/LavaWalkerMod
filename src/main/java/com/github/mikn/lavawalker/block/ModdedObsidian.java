@@ -14,13 +14,13 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import java.util.Random;
 
-import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AGE_1;
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AGE_3;
 
 public class ModdedObsidian extends Block {
 
     public ModdedObsidian() {
         super(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops().strength(50.0f, 1200.0f).lightLevel((p_235435_0_) -> 10));
-        this.registerDefaultState(this.stateDefinition.any().setValue(AGE_1, Integer.valueOf(1)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(AGE_3, Integer.valueOf(1)));
     }
 
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
@@ -32,13 +32,13 @@ public class ModdedObsidian extends Block {
     }
 
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(AGE_1);
+        builder.add(AGE_3);
     }
 
     private boolean slightlyMelt(BlockState blockState, Level level, BlockPos blockPos) {
-        int i = blockState.getValue(AGE_1);
-        if (i < 1) {
-            level.setBlock(blockPos, blockState.setValue(AGE_1, Integer.valueOf(i + 1)), 2);
+        int i = blockState.getValue(AGE_3);
+        if (i < 2) {
+            level.setBlock(blockPos, blockState.setValue(AGE_3, Integer.valueOf(i + 1)), 2);
             return false;
         } else {
             this.melt(blockState, level, blockPos);
