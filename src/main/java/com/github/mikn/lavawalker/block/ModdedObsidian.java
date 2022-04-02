@@ -47,8 +47,7 @@ public class ModdedObsidian extends Block {
     }
 
     private void melt(BlockState blockState, Level level, BlockPos blockPos) {
-        level.setBlockAndUpdate(blockPos, BlockInit.MODDED_CRYING_OBSIDIAN.get().defaultBlockState());
-        level.scheduleTick(blockPos, BlockInit.MODDED_CRYING_OBSIDIAN.get(), Mth.nextInt(level.getRandom(), 20, 40));
+        level.setBlockAndUpdate(blockPos, Blocks.LAVA.defaultBlockState());
     }
 
 }
