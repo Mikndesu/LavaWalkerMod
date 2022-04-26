@@ -4,6 +4,7 @@ import com.github.mikn.lavawalker.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -23,11 +24,11 @@ public class ModdedObsidian extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE_3, Integer.valueOf(1)));
     }
 
-    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
-        if ((random.nextInt(3) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos))) {
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
+        if ((randomSource.nextInt(3) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos))) {
 
         } else {
-            serverLevel.scheduleTick(blockPos, this, Mth.nextInt(random, 20, 40));
+            serverLevel.scheduleTick(blockPos, this, Mth.nextInt(randomSource, 20, 40));
         }
     }
 
