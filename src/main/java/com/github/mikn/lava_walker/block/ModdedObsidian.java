@@ -22,7 +22,7 @@ public class ModdedObsidian extends Block {
 
     public ModdedObsidian() {
         super(Material.ROCK);
-        this.setHardness(50.0F).setResistance(2000.0F).setSoundType(SoundType.STONE);
+        this.setHardness(50.0F).setResistance(2000.0F);
         this.setRegistryName(LavaWalker.MODID, "modded_obsidian");
         this.setTranslationKey("modded_obsidian");
         this.setDefaultState(this.blockState.getBaseState().withProperty(AGE_1, 0));

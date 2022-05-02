@@ -3,7 +3,7 @@
   "modid": "lava_walker",
   "name": "LavaWalker Enchantment",
   "description": "Add a LavaWalker Enchantment",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "mcversion": "${mcversion}",
   "updateUrl": "https://raw.githubusercontent.com/MitsukiGoto/MiknModVersions/master/LavaWalker/versions.json",
   "authorList": ["Mikn"]

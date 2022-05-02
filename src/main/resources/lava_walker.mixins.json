@@ -2,7 +2,7 @@
   "required": true,
   "package": "com.github.mikn.lava_walker.asm.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "lava_walker.refmap.json",
+  "refmap": "mixin.refmap.json",
   "mixins": [
     "EntityLivingBaseMixin",
     "FrostWalkerEnchantmentMixin"
