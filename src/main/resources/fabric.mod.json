@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "lava_walker",
-  "version": "Fabric-1.18.2-0.1",
+  "version": "Fabric-1.18.2-0.1.1",
 
   "name": "LavaWalker",
   "description": "",
@@ -9,7 +9,7 @@
     "Mikndesu"
   ],
 
-  "license": "All rights reserved",
+  "license": "MIT License",
 
   "environment": "*",
   "entrypoints": {
