@@ -1,6 +1,8 @@
 package com.github.mikn.lavawalker.enchantment;
 
+import com.github.mikn.lavawalker.config.LavaWalkerConfig;
 import com.github.mikn.lavawalker.init.BlockInit;
+import me.shedaniel.autoconfig.AutoConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -29,12 +31,13 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public boolean isTreasureOnly() {
-        return true;
+        LavaWalkerConfig config = AutoConfig.getConfigHolder(LavaWalkerConfig.class).getConfig();
+        return config.isTreasure;
     }
 
     public int getMaxLevel() {
-//        return LavaWalkerConfig.max_enchantment_level.get();
-        return 2;
+        LavaWalkerConfig config = AutoConfig.getConfigHolder(LavaWalkerConfig.class).getConfig();
+        return config.maxEnchantmentLevel;
     }
 
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
