@@ -15,6 +15,9 @@
   "entrypoints": {
     "main": [
       "com.github.mikn.lavawalker.LavaWalker"
+    ],
+    "modmenu": [
+      "com.github.mikn.lavawalker.client.screen.LavaWalkerModMenuIntegration"
     ]
   },
   "mixins": [
