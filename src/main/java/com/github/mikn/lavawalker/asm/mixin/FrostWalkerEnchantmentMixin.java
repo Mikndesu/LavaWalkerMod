@@ -14,12 +14,12 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(FrostWalkerEnchantment.class)
 public class FrostWalkerEnchantmentMixin extends Enchantment {
 
-    protected FrostWalkerEnchantmentMixin(Rarity p_44676_, EnchantmentCategory p_44677_, EquipmentSlot[] p_44678_) {
-        super(p_44676_, p_44677_, p_44678_);
+    protected FrostWalkerEnchantmentMixin(Rarity rarity, EnchantmentCategory category, EquipmentSlot[] equipmentSlots) {
+        super(rarity, category, equipmentSlots);
     }
 
     @Inject(method = "checkCompatibility(Lnet/minecraft/world/item/enchantment/Enchantment;)Z", at = @At("RETURN"), cancellable = true)
-    private void inject(Enchantment p_77326_1_, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(super.checkCompatibility(p_77326_1_) && p_77326_1_ != Enchantments.DEPTH_STRIDER && p_77326_1_ != EnchantmentInit.LAVA_WALKER);
+    private void inject(Enchantment enchantment, CallbackInfoReturnable<Boolean> cir) {
+        cir.setReturnValue(super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER && enchantment != EnchantmentInit.LAVA_WALKER);
     }
 }
