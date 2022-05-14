@@ -1,8 +1,11 @@
 package com.github.mikn.lavawalker;
 
+import com.github.mikn.lavawalker.config.LavaWalkerConfig;
 import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +23,7 @@ public class LavaWalker implements ModInitializer {
         Registry.register(Registry.ENCHANTMENT, new ResourceLocation(LavaWalker.MODID, "lava_walker"), EnchantmentInit.LAVA_WALKER);
         Registry.register(Registry.BLOCK, new ResourceLocation(LavaWalker.MODID, "modded_obsidian"), BlockInit.MODDED_OBSIDIAN);
         Registry.register(Registry.ITEM, new ResourceLocation(LavaWalker.MODID, "modded_obsidian"), ItemInit.MODDED_OBSIDIAN);
+        AutoConfig.register(LavaWalkerConfig.class, GsonConfigSerializer::new);
     }
 
 }
