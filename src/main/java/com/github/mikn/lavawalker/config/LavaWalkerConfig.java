@@ -8,4 +8,7 @@ import me.shedaniel.autoconfig.annotation.Config;
 public class LavaWalkerConfig implements ConfigData {
     public boolean isTreasure = true;
     public int maxEnchantmentLevel = 2;
+    public enum vanishmentSpeedEnum {
+        SLOW, NORMAL, FAST
+    }
 }
