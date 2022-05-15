@@ -1,6 +1,5 @@
 package com.github.mikn.lavawalker.block;
 
-import com.github.mikn.lavawalker.init.BlockInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -24,9 +23,7 @@ public class ModdedObsidian extends Block {
     }
 
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
-        if ((random.nextInt(3) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos))) {
-
-        } else {
+        if (!((random.nextInt(3) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
             serverLevel.scheduleTick(blockPos, this, Mth.nextInt(random, 20, 40));
         }
     }
@@ -36,8 +33,9 @@ public class ModdedObsidian extends Block {
     }
 
     private boolean slightlyMelt(BlockState blockState, Level level, BlockPos blockPos) {
+        final int MAX_AGE_BEFORE_LAVA = 2;
         int i = blockState.getValue(AGE_3);
-        if (i < 2) {
+        if (i < MAX_AGE_BEFORE_LAVA) {
             level.setBlock(blockPos, blockState.setValue(AGE_3, Integer.valueOf(i + 1)), 2);
             return false;
         } else {
