@@ -8,9 +8,13 @@
   "authors": [
     "Mikndesu"
   ],
-
+  "icon": "assets/lava_walker/icon.png",
+  "contact": {
+    "homepage": "https://github.com/Mikndesu/",
+    "issues": "https://github.com/Mikndesu/LavaWalkerMod/issues",
+    "sources": "https://github.com/Mikndesu/LavaWalkerMod"
+  },
   "license": "MIT License",
-
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -28,9 +32,10 @@
     "fabricloader": ">=0.13.3",
     "fabric": "*",
     "minecraft": "1.18.x",
-    "java": ">=17"
+    "java": ">=17",
+    "cloth-config": "*"
   },
   "suggests": {
-    "another-mod": "*"
+    "modmenu": "*"
   }
 }

@@ -18,8 +18,8 @@ import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 
 public class LavaWalkerEnchantment extends Enchantment {
-    public LavaWalkerEnchantment(Enchantment.Rarity p_45013_, EquipmentSlot... p_45014_) {
-        super(p_45013_, EnchantmentCategory.ARMOR_FEET, p_45014_);
+    public LavaWalkerEnchantment(Enchantment.Rarity rarity, EquipmentSlot... equipmentSlots) {
+        super(rarity, EnchantmentCategory.ARMOR_FEET, equipmentSlots);
     }
 
     public int getMinCost(int p_45017_) {
@@ -43,18 +43,24 @@ public class LavaWalkerEnchantment extends Enchantment {
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
         if (livingEntity.isOnGround()) {
             BlockState blockstate = BlockInit.MODDED_OBSIDIAN.defaultBlockState();
-            float f = 2 + enchantmentLevel;
+            float effectiveRadius = 2 + enchantmentLevel;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-            for (BlockPos blockpos : BlockPos.betweenClosed(blockPos.offset((double) (-f), -1.0D, (double) (-f)), blockPos.offset((double) f, -1.0D, (double) f))) {
-                if (blockpos.closerToCenterThan(livingEntity.position(), (double) f)) {
+            for (BlockPos blockpos : BlockPos.betweenClosed(
+                    blockPos.offset((double) (-effectiveRadius), -1.0D, (double) (-effectiveRadius)),
+                    blockPos.offset((double) effectiveRadius, -1.0D, (double) effectiveRadius))) {
+                if (blockpos.closerToCenterThan(livingEntity.position(), (double) effectiveRadius)) {
                     blockpos$mutableblockpos.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                     BlockState blockstate1 = level.getBlockState(blockpos$mutableblockpos);
                     if (blockstate1.isAir()) {
                         BlockState blockstate2 = level.getBlockState(blockpos);
-                        boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
-                        if (blockstate2.getMaterial() == Material.LAVA && isFull && blockstate.canSurvive(level, blockpos) && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty())) {
+                        boolean isFull = blockstate2.getBlock() == Blocks.LAVA
+                                && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
+                        if (blockstate2.getMaterial() == Material.LAVA && isFull
+                                && blockstate.canSurvive(level, blockpos)
+                                && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty())) {
                             level.setBlockAndUpdate(blockpos, blockstate);
-                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN, Mth.nextInt(level.getRandom(), 20, 40));
+                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN,
+                                    Mth.nextInt(level.getRandom(), 20, 40));
                         }
                     }
                 }
@@ -62,7 +68,9 @@ public class LavaWalkerEnchantment extends Enchantment {
         }
     }
 
-    public boolean checkCompatibility(Enchantment p_45024_) {
-        return super.checkCompatibility(p_45024_) && p_45024_ != Enchantments.DEPTH_STRIDER;
+    public boolean checkCompatibility(Enchantment enchantment) {
+        // Fix bug: LavaWalker wrongly had been compatible with FrostWalker.
+        return super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER
+                && enchantment != Enchantments.FROST_WALKER;
     }
 }
