@@ -14,6 +14,8 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AGE_3;
 
+import com.github.mikn.lavawalker.LavaWalker;
+
 public class ModdedObsidian extends Block {
 
     public ModdedObsidian() {
@@ -23,7 +25,7 @@ public class ModdedObsidian extends Block {
     }
 
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        if (!((randomSource.nextInt(3) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
+        if (!((randomSource.nextInt(LavaWalker.HOLDER.getConfig().module.meltSpeed.getInt()) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
             serverLevel.scheduleTick(blockPos, this, Mth.nextInt(randomSource, 20, 40));
         }
     }

@@ -13,8 +13,15 @@ public class LavaWalkerConfig extends PartitioningSerializer.GlobalData {
     @ConfigEntry.Category("module")
     @TransitiveObject
     public Module module = new Module();
-    enum MeltSpeedEnum {
-        SLOW, NORMAL, FAST
+    public enum MeltSpeedEnum {
+        SLOW(4), NORMAL(3), FAST(2);
+        private final int value;
+        MeltSpeedEnum(final int value) {
+            this.value = value;
+        }
+        public int getInt() {
+            return this.value;
+        }
     }
 
     @Config(name = "module")
@@ -23,6 +30,6 @@ public class LavaWalkerConfig extends PartitioningSerializer.GlobalData {
         @RequiresRestart
         public int maxEnchantmentLevel = 2;
         @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
-        private MeltSpeedEnum meltSpeed = MeltSpeedEnum.NORMAL;
+        public MeltSpeedEnum meltSpeed = MeltSpeedEnum.NORMAL;
     }
 }
