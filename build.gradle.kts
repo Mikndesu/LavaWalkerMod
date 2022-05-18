@@ -10,6 +10,10 @@ base {
 loom {
     mixin.defaultRefmapName.set("lava_walker.refmap.json")
 }
+sourceSets {
+    val main by getting { }
+    main.java.srcDirs("src/main/kotlin")
+}
 val modVersion: String by project
 version = modVersion
 val mavenGroup: String by project

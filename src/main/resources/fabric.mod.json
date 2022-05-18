@@ -18,7 +18,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.github.mikn.lavawalker.LavaWalker"
+      {
+        "adapter": "kotlin",
+        "value": "com.github.mikn.lavawalker.LavaWalker"
+      }
     ],
     "modmenu": [
       "com.github.mikn.lavawalker.client.screen.LavaWalkerModMenuIntegration"
@@ -31,6 +34,7 @@
   "depends": {
     "fabricloader": ">=0.14.0",
     "fabric": "*",
+    "fabric-language-kotlin": ">=1.7.4+kotlin.1.6.21",
     "minecraft": "1.19.x",
     "java": ">=17",
     "cloth-config": "*"
