@@ -14,7 +14,7 @@ public class LavaWalkerConfig extends PartitioningSerializer.GlobalData {
     @TransitiveObject
     public Module module = new Module();
     public enum MeltSpeedEnum {
-        SLOW(4), NORMAL(3), FAST(2);
+        VERY_SLOW(5), SLOW(4), NORMAL(3), FAST(2), VERY_FAST(1);
         private final int value;
         MeltSpeedEnum(final int value) {
             this.value = value;
