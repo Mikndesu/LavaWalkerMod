@@ -4,9 +4,6 @@ import com.github.mikn.lavawalker.LavaWalker;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraftforge.network.NetworkEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.util.UUID;
 import java.util.function.Supplier;
 

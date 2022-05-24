@@ -1,11 +1,8 @@
 package com.github.mikn.lavawalker.asm.mixin;
 
-import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
 import com.github.mikn.lavawalker.event.OnChangedBlockEvent;
-import com.github.mikn.lavawalker.init.EnchantmentInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraftforge.common.MinecraftForge;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
