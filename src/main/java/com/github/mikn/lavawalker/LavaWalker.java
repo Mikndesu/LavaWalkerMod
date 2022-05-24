@@ -1,8 +1,6 @@
 package com.github.mikn.lavawalker;
 
 import com.github.mikn.lavawalker.config.LavaWalkerConfig;
-import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
-import com.github.mikn.lavawalker.event.OnChangedBlockEvent;
 import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
@@ -11,13 +9,8 @@ import com.github.mikn.lavawalker.network.NetWork;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.FrostWalkerEnchantment;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -93,24 +86,6 @@ public class LavaWalker {
         if(status == VersionChecker.Status.OUTDATED) {
             Player player = evt.getPlayer();
             player.sendMessage(new TextComponent("LavaWalker Mod: New Version Available!"), player.getUUID());
-        }
-    }
-
-    @SubscribeEvent
-    public void onChangedBlock(OnChangedBlockEvent evt) {
-        BlockPos blockPos = evt.getBlockPos();
-        LivingEntity livingEntity = evt.getLivingEntity();
-        if (livingEntity instanceof Player && !isEnchantmentAvailable || availablePlayers.stream().anyMatch(s -> s.equals(livingEntity.getUUID()))) {
-            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FROST_WALKER, livingEntity);
-            if (i > 0) {
-                FrostWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, i);
-            }
-            evt.setCanceled(true);
-            return;
-        }
-        int k = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.LAVA_WALKER.get(), livingEntity);
-        if (k > 0) {
-            LavaWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, k);
         }
     }
 
