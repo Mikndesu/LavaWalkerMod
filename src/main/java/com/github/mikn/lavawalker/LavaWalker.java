@@ -1,8 +1,6 @@
 package com.github.mikn.lavawalker;
 
 import com.github.mikn.lavawalker.config.LavaWalkerConfig;
-import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
-import com.github.mikn.lavawalker.event.OnChangedBlockEvent;
 import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
@@ -11,13 +9,8 @@ import com.github.mikn.lavawalker.network.NetWork;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.enchantment.EnchantmentHelper;
-import net.minecraft.world.item.enchantment.Enchantments;
-import net.minecraft.world.item.enchantment.FrostWalkerEnchantment;
 import net.minecraftforge.client.ClientRegistry;
 import net.minecraftforge.client.event.InputEvent;
 import net.minecraftforge.common.MinecraftForge;
