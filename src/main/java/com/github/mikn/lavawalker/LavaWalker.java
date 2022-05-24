@@ -96,24 +96,6 @@ public class LavaWalker {
         }
     }
 
-    @SubscribeEvent
-    public void onChangedBlock(OnChangedBlockEvent evt) {
-        BlockPos blockPos = evt.getBlockPos();
-        LivingEntity livingEntity = evt.getLivingEntity();
-        if (livingEntity instanceof Player && !isEnchantmentAvailable || availablePlayers.stream().anyMatch(s -> s.equals(livingEntity.getUUID()))) {
-            int i = EnchantmentHelper.getEnchantmentLevel(Enchantments.FROST_WALKER, livingEntity);
-            if (i > 0) {
-                FrostWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, i);
-            }
-            evt.setCanceled(true);
-            return;
-        }
-        int k = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.LAVA_WALKER.get(), livingEntity);
-        if (k > 0) {
-            LavaWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, k);
-        }
-    }
-
     public static void sendClientMessage(String message) {
         LocalPlayer player = Minecraft.getInstance().player;
         player.sendMessage(new TextComponent(message),player.getUUID());
