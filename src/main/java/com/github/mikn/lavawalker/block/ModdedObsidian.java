@@ -14,6 +14,8 @@ import net.minecraft.world.level.material.MaterialColor;
 
 import java.util.Random;
 
+import com.github.mikn.lavawalker.config.LavaWalkerConfig;
+
 public class ModdedObsidian extends Block {
 
     private static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
@@ -25,7 +27,7 @@ public class ModdedObsidian extends Block {
     }
 
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
-        int meltProbability = 3;
+        int meltProbability = LavaWalkerConfig.meltSpeed.get().getInt();
         if (!((random.nextInt(meltProbability) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
             serverLevel.scheduleTick(blockPos, this, Mth.nextInt(random, 20, 40));
         }
