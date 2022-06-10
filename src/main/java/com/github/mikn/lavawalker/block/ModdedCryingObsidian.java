@@ -3,6 +3,7 @@ package com.github.mikn.lavawalker.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -10,8 +11,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-
-import java.util.Random;
 
 import static net.minecraft.world.level.block.state.properties.BlockStateProperties.AGE_1;
 
@@ -22,7 +21,7 @@ public class ModdedCryingObsidian extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE_1, Integer.valueOf(1)));
     }
 
-    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource random) {
         if ((random.nextInt(3) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos))) {
 
         } else {

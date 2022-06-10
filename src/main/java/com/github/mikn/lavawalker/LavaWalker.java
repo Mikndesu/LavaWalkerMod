@@ -8,7 +8,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerEvent;
@@ -45,13 +45,13 @@ public class LavaWalker {
         LOGGER.info(status);
         if(status == VersionChecker.Status.OUTDATED) {
             Player player = evt.getPlayer();
-            player.sendMessage(new TextComponent("LavaWalker Mod: New Version Available!"), player.getUUID());
+            player.sendSystemMessage(Component.literal("LavaWalker Mod: New Version Available!"));
         }
     }
 
     public static void sendClientMessage(String message) {
         LocalPlayer player = Minecraft.getInstance().player;
-        player.sendMessage(new TextComponent(message),player.getUUID());
+        player.sendSystemMessage(Component.literal(message));
     }
 
 }

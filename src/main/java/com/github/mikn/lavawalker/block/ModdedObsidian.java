@@ -3,6 +3,7 @@ package com.github.mikn.lavawalker.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -11,8 +12,6 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.Material;
 import net.minecraft.world.level.material.MaterialColor;
-
-import java.util.Random;
 
 import com.github.mikn.lavawalker.config.LavaWalkerConfig;
 
@@ -26,10 +25,10 @@ public class ModdedObsidian extends Block {
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(1)));
     }
 
-    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
+    public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
         int meltProbability = LavaWalkerConfig.meltSpeed.get().getInt();
-        if (!((random.nextInt(meltProbability) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
-            serverLevel.scheduleTick(blockPos, this, Mth.nextInt(random, 20, 40));
+        if (!((randomSource.nextInt(meltProbability) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
+            serverLevel.scheduleTick(blockPos, this, Mth.nextInt(randomSource, 20, 40));
         }
     }
 
