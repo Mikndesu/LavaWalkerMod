@@ -5,6 +5,7 @@ import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.RequiresRestart;
+import net.minecraft.world.item.enchantment.Enchantment;
 
 @Config(name = LavaWalker.MODID)
 public class LavaWalkerConfig implements ConfigData {
@@ -25,4 +26,7 @@ public class LavaWalkerConfig implements ConfigData {
     @RequiresRestart
     @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
     public MeltSpeedEnum meltSpeed = MeltSpeedEnum.NORMAL;
+    @RequiresRestart
+    @ConfigEntry.Gui.EnumHandler(option = ConfigEntry.Gui.EnumHandler.EnumDisplayOption.BUTTON)
+    public Enchantment.Rarity rarity = Enchantment.Rarity.RARE;
 }
