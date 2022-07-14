@@ -30,11 +30,11 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public boolean isTreasureOnly() {
-        return LavaWalker.HOLDER.getConfig().isTreasure;
+        return LavaWalker.HOLDER.isTreasure;
     }
 
     public int getMaxLevel() {
-        return LavaWalker.HOLDER.getConfig().maxEnchantmentLevel;
+        return LavaWalker.HOLDER.maxEnchantmentLevel;
     }
 
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {

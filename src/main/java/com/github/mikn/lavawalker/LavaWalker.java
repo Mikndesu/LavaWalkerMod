@@ -18,7 +18,7 @@ public class LavaWalker implements ModInitializer {
 
     public static final String MODID = "lava_walker";
     public static final Logger LOGGER = LogManager.getLogger("LavaWalker/Main");
-    public static final ConfigHolder<LavaWalkerConfig> HOLDER;
+    public static final LavaWalkerConfig HOLDER;
 
     @Override
     public void onInitialize() {
@@ -27,7 +27,7 @@ public class LavaWalker implements ModInitializer {
         Registry.register(Registry.ITEM, new ResourceLocation(LavaWalker.MODID, "modded_obsidian"), ItemInit.MODDED_OBSIDIAN);
     }
     static {
-        HOLDER = AutoConfig.register(LavaWalkerConfig.class, JanksonConfigSerializer::new);
+        HOLDER = AutoConfig.register(LavaWalkerConfig.class, JanksonConfigSerializer::new).getConfig();
     }
 
 }

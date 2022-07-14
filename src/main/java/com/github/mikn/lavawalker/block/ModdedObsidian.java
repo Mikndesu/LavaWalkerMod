@@ -26,7 +26,7 @@ public class ModdedObsidian extends Block {
     }
 
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
-        int meltProbability = LavaWalker.HOLDER.getConfig().meltSpeed.getInt();
+        int meltProbability = LavaWalker.HOLDER.meltSpeed.getInt();
         if (!((randomSource.nextInt(meltProbability) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
             serverLevel.scheduleTick(blockPos, this, Mth.nextInt(randomSource, 20, 40));
         }
