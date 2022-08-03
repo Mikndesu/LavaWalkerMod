@@ -6,6 +6,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -21,9 +22,13 @@ public class ModdedObsidian extends Block {
     private static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
     public ModdedObsidian() {
-        super(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops()
-                .strength(50.0f, 1200.0f).lightLevel((p_235435_0_) -> 10));
+        super(prop());
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(1)));
+    }
+
+    private static BlockBehaviour.Properties prop() {
+        BlockBehaviour.Properties prop = Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).noDrops().lightLevel((p_235435_0_) -> 10);
+        return LavaWalkerConfig.isBreakable.get() ? prop.strength(50.0f, 1200.0f) : prop.strength(-1.0F, 3600000.0F);
     }
 
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
