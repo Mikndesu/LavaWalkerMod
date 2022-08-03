@@ -3,6 +3,8 @@ package com.github.mikn.lavawalker.block;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -22,17 +24,22 @@ public class ModdedObsidian extends Block {
     private static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
     public ModdedObsidian() {
-        super(prop());
+        super(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops()
+                .strength(-1.0F, 3600000.0F).lightLevel((p_235435_0_) -> 10));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(1)));
     }
 
-    private static BlockBehaviour.Properties prop() {
-        BlockBehaviour.Properties prop = Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).noDrops().lightLevel((p_235435_0_) -> 10);
-        return LavaWalkerConfig.isBreakable.get() ? prop.strength(50.0f, 1200.0f) : prop.strength(-1.0F, 3600000.0F);
+    @SuppressWarnings("deprecation")
+    @Override
+    public float getDestroyProgress(BlockState p_60466_, Player p_60467_, BlockGetter p_60468_, BlockPos p_60469_) {
+        // This value is the same as that of obsidian
+        final float HARDNESS = 50.0f;
+        return LavaWalkerConfig.isBreakable.get() ? HARDNESS : super.getDestroyProgress(p_60466_, p_60467_, p_60468_, p_60469_);
     }
 
+
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, Random random) {
-        int meltProbability = LavaWalkerConfig.meltSpeed.get().getInt();
+        int meltProbability = LavaWalkerConfig.meltSpeed.get().getInt(); 
         if (!((random.nextInt(meltProbability) == 0 && this.slightlyMelt(blockState, serverLevel, blockPos)))) {
             serverLevel.scheduleTick(blockPos, this, Mth.nextInt(random, 20, 40));
         }
