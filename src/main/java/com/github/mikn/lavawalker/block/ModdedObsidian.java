@@ -25,6 +25,8 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -42,8 +44,17 @@ public class ModdedObsidian extends Block {
 
     public ModdedObsidian() {
         super(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops()
-                .strength(50.0f, 1200.0f).lightLevel((p_235435_0_) -> 10));
+                .strength(-1.0F, 3600000.0F).lightLevel((p_235435_0_) -> 10));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(1)));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public float getDestroyProgress(BlockState p_60466_, Player p_60467_, BlockGetter p_60468_, BlockPos p_60469_) {
+        // This value is the same as that of obsidian
+        final float HARDNESS = 50.0f;
+        return LavaWalker.HOLDER.isBreakable ? HARDNESS
+                : super.getDestroyProgress(p_60466_, p_60467_, p_60468_, p_60469_);
     }
 
     public void tick(BlockState blockState, ServerLevel serverLevel, BlockPos blockPos, RandomSource randomSource) {
