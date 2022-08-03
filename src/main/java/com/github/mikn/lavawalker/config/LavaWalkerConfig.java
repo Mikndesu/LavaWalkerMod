@@ -20,11 +20,13 @@ public class LavaWalkerConfig {
 
     public static final ForgeConfigSpec.ConfigValue<Integer> max_enchantment_level;
     public static final ForgeConfigSpec.EnumValue<MeltSpeedEnum> meltSpeed;
+    public static final ForgeConfigSpec.BooleanValue isBreakable;
 
     static {
         BUILDER.push("Config for LavaWalker Enchantment Mod");
         max_enchantment_level = BUILDER.comment("This defines the max enchantment level").define("max_enchantment_level", 2);
         meltSpeed = BUILDER.comment("You can choose speed from VERY_FAST FAST NORMAL SLOW VERY_SLOW").defineEnum("meltSpeed", MeltSpeedEnum.NORMAL);
+        isBreakable = BUILDER.comment("This field determines whether obsidians that Lavawalker generates are breakable.").define("is_breakable", false);
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
