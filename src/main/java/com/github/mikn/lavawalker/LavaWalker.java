@@ -31,9 +31,11 @@ import com.github.mikn.lavawalker.init.ItemInit;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 
@@ -49,7 +51,14 @@ public class LavaWalker {
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
         EnchantmentInit.ENCHANTMENTS.register(bus);
+        bus.addListener(this::postInit);
         MinecraftForge.EVENT_BUS.register(this);
+    }
+
+    private void postInit(final FMLCommonSetupEvent evt) {
+        if(ModList.get().isLoaded("mekanism")) {
+            LOGGER.debug("Detecting mekanism installed, mekanism addon is enabled.");
+        }
     }
 
 }
