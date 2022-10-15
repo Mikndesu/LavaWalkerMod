@@ -29,3 +29,9 @@ be lava through crying obsidian.
     versionRange="[1.19, 1.20)"
     ordering="NONE"
     side="BOTH"
+[[dependencies.lava_walker]]
+    modId="mekanism"
+    mandatory=false
+    versionRange="[1.19, 1.20)"
+    ordering="NONE"
+    side="BOTH"
