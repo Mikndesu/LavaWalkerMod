@@ -1,12 +1,11 @@
 modLoader="javafml"
 loaderVersion="[36,)"
-license="All rights reserved"
+license="MIT License"
 [[mods]]
 modId="lava_walker"
-version="0.1.0"
+version="1.0.0"
 displayName="LavaWalker Enchantment"
-updateJSONURL="https://raw.githubusercontent.com/MitsukiGoto/MiknModVersions/master/LavaWalker/versions.json"
-# logoFile="examplemod.png"
+logoFile="examplemod.png"
 authors="Mikn"
 description='''
 This mod adds LavaWalker Enchantment which
