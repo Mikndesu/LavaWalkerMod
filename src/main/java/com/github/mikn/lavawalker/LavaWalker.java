@@ -59,20 +59,4 @@ public class LavaWalker {
         MinecraftForge.EVENT_BUS.register(this);
     }
 
-    @SubscribeEvent
-    public void updateCheck(PlayerEvent.PlayerLoggedInEvent evt) {
-        ModContainer container = ModList.get().getModContainerById(MODID).get();
-        VersionChecker.Status status = VersionChecker.getResult(container.getModInfo()).status();
-        LOGGER.info(status);
-        if(status == VersionChecker.Status.OUTDATED) {
-            Player player = evt.getPlayer();
-            player.sendSystemMessage(Component.literal("LavaWalker Mod: New Version Available!"));
-        }
-    }
-
-    public static void sendClientMessage(String message) {
-        LocalPlayer player = Minecraft.getInstance().player;
-        player.sendSystemMessage(Component.literal(message));
-    }
-
 }
