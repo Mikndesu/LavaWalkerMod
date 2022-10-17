@@ -21,6 +21,7 @@
 
 package com.github.mikn.lavawalker.asm.mixin;
 
+import com.github.mikn.lavawalker.LavaWalker;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.enchantment.Enchantment;
@@ -41,6 +42,7 @@ public class FrostWalkerEnchantmentMixin extends Enchantment {
 
     @Inject(method = "checkCompatibility(Lnet/minecraft/world/item/enchantment/Enchantment;)Z", at = @At("RETURN"), cancellable = true)
     private void inject(Enchantment enchantment, CallbackInfoReturnable<Boolean> cir) {
-        cir.setReturnValue(super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER && enchantment != EnchantmentInit.LAVA_WALKER);
+        cir.setReturnValue(super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER
+        && LavaWalker.HOLDER.shouldExclusiveWithFrost ? enchantment != EnchantmentInit.LAVA_WALKER : true);
     }
 }

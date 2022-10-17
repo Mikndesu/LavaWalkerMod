@@ -89,6 +89,6 @@ public class LavaWalkerEnchantment extends Enchantment {
     public boolean checkCompatibility(Enchantment enchantment) {
         // Fix bug: LavaWalker wrongly had been compatible with FrostWalker.
         return super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER
-                && enchantment != Enchantments.FROST_WALKER;
+                && LavaWalker.HOLDER.shouldExclusiveWithFrost ? enchantment != Enchantments.FROST_WALKER : true;
     }
 }

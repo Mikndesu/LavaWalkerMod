@@ -43,6 +43,7 @@ public class LavaWalkerConfig implements ConfigData {
     public boolean isMinable = false;
     @RequiresRestart
     public boolean isTreasure = true;
+    public boolean shouldExclusiveWithFrost = true;
     @RequiresRestart
     public int maxEnchantmentLevel = 2;
     @RequiresRestart
