@@ -1,3 +1,24 @@
+/*
+ Copyright (c) 2022 Mikndesu
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy of
+ this software and associated documentation files (the "Software"), to deal in
+ the Software without restriction, including without limitation the rights to
+ use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+ the Software, and to permit persons to whom the Software is furnished to do so,
+ subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+ FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+ COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+ IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
+
 package com.github.mikn.lavawalker.enchantment;
 
 import com.github.mikn.lavawalker.LavaWalker;
@@ -30,11 +51,11 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public boolean isTreasureOnly() {
-        return LavaWalker.HOLDER.getConfig().module.isTreasure;
+        return LavaWalker.HOLDER.isTreasure;
     }
 
     public int getMaxLevel() {
-        return LavaWalker.HOLDER.getConfig().module.maxEnchantmentLevel;
+        return LavaWalker.HOLDER.maxEnchantmentLevel;
     }
 
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
@@ -68,6 +89,6 @@ public class LavaWalkerEnchantment extends Enchantment {
     public boolean checkCompatibility(Enchantment enchantment) {
         // Fix bug: LavaWalker wrongly had been compatible with FrostWalker.
         return super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER
-                && enchantment != Enchantments.FROST_WALKER;
+                && LavaWalker.HOLDER.shouldExclusiveWithFrost ? enchantment != Enchantments.FROST_WALKER : true;
     }
 }
