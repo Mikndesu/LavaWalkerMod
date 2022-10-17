@@ -53,7 +53,7 @@ public class ModdedObsidian extends Block {
     public float getDestroyProgress(BlockState p_60466_, Player p_60467_, BlockGetter p_60468_, BlockPos p_60469_) {
         // This value is the same as that of obsidian
         final float HARDNESS = 50.0f;
-        return LavaWalker.HOLDER.isBreakable ? HARDNESS
+        return LavaWalker.HOLDER.isMinable ? HARDNESS
                 : super.getDestroyProgress(p_60466_, p_60467_, p_60468_, p_60469_);
     }
 

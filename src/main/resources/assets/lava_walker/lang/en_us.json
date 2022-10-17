@@ -4,7 +4,7 @@
   "block.lava_walker.modded_obsidian": "Obsidian",
   "block.lava_walker.modded_crying_obsidian": "Crying Obsidian",
   "text.autoconfig.lava_walker.option.isTreasure": "Lavawalker is treasure enchantment or not",
-  "text.autoconfig.lava_walker.option.isBreakable": "The generated obsidians are minable or not",
+  "text.autoconfig.lava_walker.option.isMinable": "The generated obsidians are minable or not",
   "text.autoconfig.lava_walker.option.maxEnchantmentLevel": "Maximum level of this enchantment",
   "text.autoconfig.lava_walker.option.meltSpeed": "How fast obsidians melt",
   "text.autoconfig.lava_walker.option.rarity": "How frequently this enchantment appears",

@@ -40,7 +40,7 @@ public class LavaWalkerConfig implements ConfigData {
             return this.value;
         }
     }
-    public boolean isBreakable = false;
+    public boolean isMinable = false;
     @RequiresRestart
     public boolean isTreasure = true;
     @RequiresRestart
