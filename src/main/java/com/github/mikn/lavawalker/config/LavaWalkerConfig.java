@@ -22,6 +22,7 @@
 package com.github.mikn.lavawalker.config;
 
 import com.github.mikn.lavawalker.LavaWalker;
+import blue.endless.jankson.Comment;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
@@ -44,6 +45,8 @@ public class LavaWalkerConfig implements ConfigData {
     @RequiresRestart
     public boolean isTreasure = true;
     public boolean shouldExclusiveWithFrost = true;
+    @Comment("Make Sure Your world has no modded blocks that may cause bedrock clients crash")
+    public boolean isCompatibleWithBedrock = true;
     @RequiresRestart
     public int maxEnchantmentLevel = 2;
     @RequiresRestart
