@@ -5,6 +5,7 @@
   "refmap": "lava_walker.refmap.json",
   "mixins": [
     "FrostWalkerEnchantmentMixin",
+    "IceBlockMixin",
     "LivingEntityMixin"
   ],
   "client": [
