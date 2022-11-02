@@ -40,7 +40,7 @@ public class LivingEntityMixin {
     private void inject(BlockPos blockPos, CallbackInfo ci) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         int k = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.LAVA_WALKER, livingEntity);
-        if (k > 0 || (LavaWalker.HOLDER.isCompatibleWithBedrock && EnchantmentHelper.getEnchantmentLevel(Enchantments.FROST_WALKER, livingEntity) > 0)) {
+        if (k > 0 || (LavaWalker.HOLDER.isCompatibleVanilla && EnchantmentHelper.getEnchantmentLevel(Enchantments.FROST_WALKER, livingEntity) > 0)) {
             LavaWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, k);
         }
     }
