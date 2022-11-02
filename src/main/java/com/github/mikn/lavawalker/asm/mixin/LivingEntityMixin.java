@@ -21,11 +21,14 @@
 
 package com.github.mikn.lavawalker.asm.mixin;
 
+import com.github.mikn.lavawalker.LavaWalker;
 import com.github.mikn.lavawalker.enchantment.LavaWalkerEnchantment;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.item.enchantment.Enchantments;
+
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -37,7 +40,7 @@ public class LivingEntityMixin {
     private void inject(BlockPos blockPos, CallbackInfo ci) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         int k = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.LAVA_WALKER, livingEntity);
-        if (k > 0) {
+        if (k > 0 || (LavaWalker.HOLDER.isCompatibleWithBedrock && EnchantmentHelper.getEnchantmentLevel(Enchantments.FROST_WALKER, livingEntity) > 0)) {
             LavaWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, k);
         }
     }
