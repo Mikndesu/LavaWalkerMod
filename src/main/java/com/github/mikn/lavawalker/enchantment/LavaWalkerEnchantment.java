@@ -76,9 +76,16 @@ public class LavaWalkerEnchantment extends Enchantment {
                         if (blockstate2.getMaterial() == Material.LAVA && isFull
                                 && blockstate.canSurvive(level, blockpos)
                                 && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty())) {
-                            level.setBlockAndUpdate(blockpos, blockstate);
-                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN,
+                            if(LavaWalker.HOLDER.isCompatibleWithBedrock) {
+                                blockstate = Blocks.FROSTED_ICE.defaultBlockState();
+                                level.setBlockAndUpdate(blockpos, blockstate);
+                                level.scheduleTick(blockpos, Blocks.FROSTED_ICE,
                                     Mth.nextInt(level.getRandom(), 20, 40));
+                            } else {
+                                level.setBlockAndUpdate(blockpos, blockstate);
+                                level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN,
+                                    Mth.nextInt(level.getRandom(), 20, 40));
+                            }
                         }
                     }
                 }
