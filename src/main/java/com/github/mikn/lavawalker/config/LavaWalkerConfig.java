@@ -45,7 +45,11 @@ public class LavaWalkerConfig implements ConfigData {
     @RequiresRestart
     public boolean isTreasure = true;
     public boolean shouldExclusiveWithFrost = true;
-    @Comment("Make Sure Your world has no modded blocks that may cause bedrock clients crash")
+    @Comment("""
+            Make Sure Your world has no modded blocks that may cause bedrock clients crash.
+            This option make Frostwalker have an ability of Lavawalker and generated frosted
+            ice turn to be lava.
+            """)
     public boolean isCompatibleWithBedrock = true;
     @RequiresRestart
     public int maxEnchantmentLevel = 2;
