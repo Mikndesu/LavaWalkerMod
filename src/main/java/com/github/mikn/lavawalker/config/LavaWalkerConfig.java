@@ -22,11 +22,11 @@
 package com.github.mikn.lavawalker.config;
 
 import com.github.mikn.lavawalker.LavaWalker;
-import blue.endless.jankson.Comment;
 import me.shedaniel.autoconfig.ConfigData;
 import me.shedaniel.autoconfig.annotation.Config;
 import me.shedaniel.autoconfig.annotation.ConfigEntry;
 import me.shedaniel.autoconfig.annotation.ConfigEntry.Gui.RequiresRestart;
+import me.shedaniel.cloth.clothconfig.shadowed.blue.endless.jankson.Comment;
 import net.minecraft.world.item.enchantment.Enchantment;
 
 @Config(name = LavaWalker.MODID)
@@ -46,9 +46,11 @@ public class LavaWalkerConfig implements ConfigData {
     public boolean isTreasure = true;
     public boolean shouldExclusiveWithFrost = true;
     @Comment("""
-            Make Sure Your world has no modded blocks that may cause vanilla clients crash.
-            This option make Frostwalker have an ability of Lavawalker and generated frosted
-            ice turn to be lava.
+            Make Sure Your world has no modded blocks 
+            that may cause vanilla clients crash.
+            This option make Frostwalker have an 
+            ability of Lavawalker and generated 
+            frosted ices turn to be lava.
             """)
     public boolean isCompatibleWithVanilla = true;
     @RequiresRestart
