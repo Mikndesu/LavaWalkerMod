@@ -6,6 +6,8 @@
   "text.autoconfig.lava_walker.option.isTreasure": "Lavawalker is treasure enchantment or not",
   "text.autoconfig.lava_walker.option.isMinable": "The generated obsidians are minable or not",
   "text.autoconfig.lava_walker.option.maxEnchantmentLevel": "Maximum level of this enchantment",
+  "text.autoconfig.lava_walker.option.isCompatibleWithBedrock": "Make Lavawalker compatible with Bedrock Players",
+  "text.autoconfig.lava_walker.option.shouldExclusiveWithFrost": "Should Lavawalker be exclusive with Frostwalker",
   "text.autoconfig.lava_walker.option.meltSpeed": "How fast obsidians melt",
   "text.autoconfig.lava_walker.option.rarity": "How frequently this enchantment appears",
   "text.autoconfig.lava_walker.title": "Configuration Menu for LavaWalker Enchantment Mod"
