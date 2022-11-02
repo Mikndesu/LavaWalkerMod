@@ -50,7 +50,7 @@ public class LavaWalkerConfig implements ConfigData {
             This option make Frostwalker have an ability of Lavawalker and generated frosted
             ice turn to be lava.
             """)
-    public boolean isCompatibleVanilla = true;
+    public boolean isCompatibleWithVanilla = true;
     @RequiresRestart
     public int maxEnchantmentLevel = 2;
     @RequiresRestart

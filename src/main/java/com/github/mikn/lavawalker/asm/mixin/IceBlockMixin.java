@@ -17,7 +17,7 @@ import com.github.mikn.lavawalker.LavaWalker;
 public class IceBlockMixin {
     @Inject(method = "melt(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/world/level/Level;Lnet/minecraft/core/BlockPos;)V", at = @At("HEAD"), cancellable = true)
     private void inject(BlockState state, Level level, BlockPos blockPos, CallbackInfo ci) {
-        if (LavaWalker.HOLDER.isCompatibleVanilla) {
+        if (LavaWalker.HOLDER.isCompatibleWithVanilla) {
             BlockState blockState = level.getBlockState(blockPos.below());
             if (blockState.is(Blocks.LAVA)) {
                 level.setBlockAndUpdate(blockPos, Blocks.LAVA.defaultBlockState());
