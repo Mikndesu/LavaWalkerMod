@@ -44,8 +44,8 @@ public class LavaWalkerConfig {
 
     static {
         BUILDER.push("Config for LavaWalker Enchantment Mod");
-        max_enchantment_level = BUILDER.comment("This defines the max enchantment level").define("max_enchantment_level", 2);
-        meltSpeed = BUILDER.comment("You can choose speed from VERY_FAST FAST NORMAL SLOW VERY_SLOW").defineEnum("meltSpeed", MeltSpeedEnum.NORMAL);
+        max_enchantment_level = BUILDER.comment("Maximum Level of Lavawalker").define("max_enchantment_level", 2);
+        meltSpeed = BUILDER.comment("How fast obsidians melt").defineEnum("meltSpeed", MeltSpeedEnum.NORMAL);
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
