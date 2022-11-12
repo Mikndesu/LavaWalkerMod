@@ -23,6 +23,8 @@ package com.github.mikn.lavawalker.block;
 
 import java.util.Random;
 
+import com.github.mikn.lavawalker.config.LavaWalkerConfig;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -46,7 +48,7 @@ public class ModdedObsidian extends Block {
     }
 
     public void tick(BlockState blockState, ServerWorld serverWorld, BlockPos blockPos, Random random) {
-        int meltProbability = 3;
+        int meltProbability = LavaWalkerConfig.meltSpeed.get().getInt();
         if (!((random.nextInt(meltProbability) == 0 && this.slightlyMelt(blockState, serverWorld, blockPos)))) {
             serverWorld.getBlockTicks().scheduleTick(blockPos, this, MathHelper.nextInt(random, 20, 40));
         }
