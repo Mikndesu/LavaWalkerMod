@@ -8,10 +8,9 @@ displayName="LavaWalker Enchantment"
 logoFile="examplemod.png"
 authors="Mikn"
 description='''
-This mod adds LavaWalker Enchantment which
-creates obsidian block as you walk over the
-lava. As time passes, created obsidian will
-be lava through crying obsidian.
+LavaWalker generates obsidians as you walk over
+lava. Generated Obsidians melt into lava through
+crying obsidians over time.
 このModは溶岩渡りのエンチャントを追加します。バニラの
 氷渡りのように溶岩の上を歩く時黒曜石を生成します。生成
 された黒曜石は時間経過で泣く黒曜石を通して溶岩ブロック
@@ -27,11 +26,5 @@ be lava through crying obsidian.
     modId="minecraft"
     mandatory=true
     versionRange="[1.19, 1.20)"
-    ordering="NONE"
-    side="BOTH"
-[[dependencies.lava_walker]]
-    modId="mekanism"
-    mandatory=false
-    versionRange="10.3.2"
     ordering="NONE"
     side="BOTH"
