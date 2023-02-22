@@ -8,5 +8,6 @@
   "text.autoconfig.lava_walker.option.maxEnchantmentLevel": "Maximum level of this enchantment",
   "text.autoconfig.lava_walker.option.meltSpeed": "How fast obsidians melt",
   "text.autoconfig.lava_walker.option.rarity": "How frequently this enchantment appears",
+  "text.autoconfig.lava_walker.option.shouldExclusiveWithFrost": "Lavawalker is exclusive with Frostwalker or not",
   "text.autoconfig.lava_walker.title": "Configuration Menu for LavaWalker Enchantment Mod"
 }
