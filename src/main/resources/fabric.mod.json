@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "lava_walker",
-  "version": "Fabric-1.19-0.3.0",
+  "version": "Fabric-1.19.4-1.0.0",
 
   "name": "LavaWalker",
   "description": "",
