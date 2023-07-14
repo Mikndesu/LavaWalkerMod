@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "lava_walker",
-  "version": "Fabric-1.19-0.3.0",
+  "version": "1.0.0",
 
   "name": "LavaWalker",
   "description": "",
@@ -31,7 +31,7 @@
   "depends": {
     "fabricloader": ">=0.14.0",
     "fabric": "*",
-    "minecraft": "1.19.x",
+    "minecraft": "1.20.x",
     "java": ">=17",
     "cloth-config": "*"
   },
