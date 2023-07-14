@@ -38,7 +38,7 @@ public class LivingEntityMixin {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         int k = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.LAVA_WALKER, livingEntity);
         if (k > 0) {
-            LavaWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level, blockPos, k);
+            LavaWalkerEnchantment.onEntityMoved(livingEntity, livingEntity.level(), blockPos, k);
         }
     }
 }

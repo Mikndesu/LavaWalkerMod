@@ -32,9 +32,7 @@ import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.material.Material;
 import net.minecraft.world.phys.shapes.CollisionContext;
 
 public class LavaWalkerEnchantment extends Enchantment {
@@ -59,35 +57,30 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
-        if (livingEntity.isOnGround()) {
-            BlockState blockstate = BlockInit.MODDED_OBSIDIAN.defaultBlockState();
-            float effectiveRadius = 2 + enchantmentLevel;
-            BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-            for (BlockPos blockpos : BlockPos.betweenClosed(
-                    blockPos.offset((double) (-effectiveRadius), -1.0D, (double) (-effectiveRadius)),
-                    blockPos.offset((double) effectiveRadius, -1.0D, (double) effectiveRadius))) {
-                if (blockpos.closerToCenterThan(livingEntity.position(), (double) effectiveRadius)) {
-                    blockpos$mutableblockpos.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
-                    BlockState blockstate1 = level.getBlockState(blockpos$mutableblockpos);
-                    if (blockstate1.isAir()) {
-                        BlockState blockstate2 = level.getBlockState(blockpos);
-                        boolean isFull = blockstate2.getBlock() == Blocks.LAVA
-                                && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
-                        if (blockstate2.getMaterial() == Material.LAVA && isFull
-                                && blockstate.canSurvive(level, blockpos)
-                                && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty())) {
-                            level.setBlockAndUpdate(blockpos, blockstate);
-                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN,
-                                    Mth.nextInt(level.getRandom(), 20, 40));
-                        }
-                    }
-                }
-            }
+        if (!livingEntity.onGround()) {
+            return;
+        }
+        BlockState blockState = BlockInit.MODDED_OBSIDIAN.defaultBlockState();
+        int effectiveRadius = 2 + enchantmentLevel;
+        BlockPos.MutableBlockPos mutableBlockPos = new BlockPos.MutableBlockPos();
+        for (BlockPos blockPos2 : BlockPos.betweenClosed(blockPos.offset(-effectiveRadius, -1, -effectiveRadius),
+                blockPos.offset(effectiveRadius, -1, effectiveRadius))) {
+            BlockState blockState3;
+            if (!blockPos2.closerToCenterThan(livingEntity.position(), effectiveRadius))
+                continue;
+            mutableBlockPos.set(blockPos2.getX(), blockPos2.getY() + 1, blockPos2.getZ());
+            BlockState blockState2 = level.getBlockState(mutableBlockPos);
+            if (!blockState2.isAir()
+                    || (blockState3 = level.getBlockState(blockPos2)) != Blocks.LAVA.defaultBlockState()
+                    || !blockState.canSurvive(level, blockPos2)
+                    || !level.isUnobstructed(blockState, blockPos2, CollisionContext.empty()))
+                continue;
+            level.setBlockAndUpdate(blockPos2, blockState);
+            level.scheduleTick(blockPos2, Blocks.FROSTED_ICE, Mth.nextInt(livingEntity.getRandom(), 60, 120));
         }
     }
 
     public boolean checkCompatibility(Enchantment enchantment) {
-        // Fix bug: LavaWalker wrongly had been compatible with FrostWalker.
         return super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER
                 && LavaWalker.HOLDER.shouldExclusiveWithFrost ? enchantment != Enchantments.FROST_WALKER : true;
     }
