@@ -1,6 +1,7 @@
 plugins {
 	id 'fabric-loom' version '1.1-SNAPSHOT'
 	id 'com.matthewprenger.cursegradle' version "1.4.0"
+	id "com.modrinth.minotaur" version "2.+"
 	id 'maven-publish'
 }
 
@@ -96,3 +97,21 @@ curseforge {
         javaVersionAutoDetect = false
     }
 }
+
+modrinth {
+    if (project.hasProperty("modrinth_token") || System.getenv("modrinth_token") != null) {
+        token = project.hasProperty("modrinth_token") ? project.property("modrinth_token") : System.getenv("modrinth_token")
+		projectId = project.modrinth_project_id
+    	versionNumber = project.version
+    	versionName = project.archivesBaseName
+    	uploadFile = remapJar
+    	gameVersions = ['1.19']
+    	loaders = ['fabric']
+    	dependencies {
+        	required.project "fabric-api"
+			required.project "cloth-config"
+        	optional.project "modmenu"
+    	}
+    }
+}
+tasks.modrinth.dependsOn("build")
