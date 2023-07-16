@@ -1,5 +1,6 @@
 plugins {
 	id 'fabric-loom' version '1.1-SNAPSHOT'
+	id 'com.matthewprenger.cursegradle' version "1.4.0"
 	id 'maven-publish'
 }
 
@@ -70,4 +71,29 @@ publishing {
 	}
 	repositories {
 	}
+}
+
+curseforge {
+    if (project.hasProperty("curse_api_key") || System.getenv("curse_api_key") != null) {
+        apiKey = project.hasProperty("curse_api_key") ? project.property("curse_api_key") : System.getenv("curse_api_key")
+        project {
+            id = project.curseforge_project_id
+            releaseType = "release"
+            addGameVersion "1.20"
+			addGameVersion "1.20.1"
+            addGameVersion "1.20-Snapshot"
+            addGameVersion "Java 17"
+            addGameVersion "Fabric"
+            mainArtifact(remapJar.archivePath) {
+                displayName = "${project.archivesBaseName}_${project.version}"
+            }
+            afterEvaluate {
+                uploadTask.dependsOn("build")
+            }
+        }
+    }
+    options {
+        forgeGradleIntegration = false
+        javaVersionAutoDetect = false
+    }
 }
