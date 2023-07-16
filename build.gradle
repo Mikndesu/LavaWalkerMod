@@ -115,3 +115,8 @@ modrinth {
     }
 }
 tasks.modrinth.dependsOn("build")
+
+task publishToModSites {
+    publishToModSites.dependsOn modrinth
+    publishToModSites.dependsOn curseforge
+}
