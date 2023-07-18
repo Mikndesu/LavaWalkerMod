@@ -76,7 +76,7 @@ public class LavaWalkerEnchantment extends Enchantment {
                     || !level.isUnobstructed(blockState, blockPos2, CollisionContext.empty()))
                 continue;
             level.setBlockAndUpdate(blockPos2, blockState);
-            level.scheduleTick(blockPos2, Blocks.FROSTED_ICE, Mth.nextInt(livingEntity.getRandom(), 60, 120));
+            level.scheduleTick(blockPos2, BlockInit.MODDED_OBSIDIAN, Mth.nextInt(livingEntity.getRandom(), 60, 120));
         }
     }
 
