@@ -144,7 +144,6 @@ modrinth {
     	gameVersions = ['1.19.4']
     	loaders = ['forge']
     	dependencies {
-			required.project "cloth-config"
     	}
     }
 }
