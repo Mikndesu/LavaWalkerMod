@@ -51,7 +51,7 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public boolean isTreasureOnly() {
-        return true;
+        return LavaWalkerConfig.isTreasure.get();
     }
 
     public int getMaxLevel() {
@@ -87,6 +87,7 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public boolean checkCompatibility(Enchantment p_45024_) {
-        return super.checkCompatibility(p_45024_) && p_45024_ != Enchantments.DEPTH_STRIDER;
+        return super.checkCompatibility(p_45024_) && p_45024_ != Enchantments.DEPTH_STRIDER
+                && LavaWalkerConfig.exclusiveWithFrostWalker.get() ? p_45024_ != Enchantments.FROST_WALKER : true;
     }
 }
