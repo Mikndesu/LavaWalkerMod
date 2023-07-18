@@ -61,23 +61,28 @@ public class LavaWalkerEnchantment extends Enchantment {
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
         if (livingEntity.isOnGround()) {
             BlockState blockstate = BlockInit.MODDED_OBSIDIAN.get().defaultBlockState();
-            float f = 2 + enchantmentLevel;
+            int effectiveRadius = 2 + enchantmentLevel;
             BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-            for (BlockPos blockpos : BlockPos.betweenClosed(blockPos.offset((double) (-f), -1.0D, (double) (-f)), blockPos.offset((double) f, -1.0D, (double) f))) {
-                if (blockpos.closerToCenterThan(livingEntity.position(), (double) f)) {
+            for (BlockPos blockpos : BlockPos.betweenClosed(
+                    blockPos.offset(-effectiveRadius, -1, -effectiveRadius),
+                    blockPos.offset(effectiveRadius, -1, effectiveRadius))) {
+                if (blockpos.closerToCenterThan(livingEntity.position(), (double) effectiveRadius)) {
                     blockpos$mutableblockpos.set(blockpos.getX(), blockpos.getY() + 1, blockpos.getZ());
                     BlockState blockstate1 = level.getBlockState(blockpos$mutableblockpos);
                     if (blockstate1.isAir()) {
                         BlockState blockstate2 = level.getBlockState(blockpos);
-                        boolean isFull = blockstate2.getBlock() == Blocks.LAVA && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
-                        if (blockstate2.getMaterial() == Material.LAVA && isFull && blockstate.canSurvive(level, blockpos) && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty()) && !net.minecraftforge.event.ForgeEventFactory.onBlockPlace(livingEntity, net.minecraftforge.common.util.BlockSnapshot.create(level.dimension(), level, blockpos), net.minecraft.core.Direction.UP)) {
+                        boolean isFull = blockstate2.getBlock() == Blocks.LAVA
+                                && blockstate2.getValue(LiquidBlock.LEVEL) == 0;
+                        if (blockstate2.getMaterial() == Material.LAVA && isFull
+                                && blockstate.canSurvive(level, blockpos)
+                                && level.isUnobstructed(blockstate, blockpos, CollisionContext.empty())) {
                             level.setBlockAndUpdate(blockpos, blockstate);
-                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN.get(), Mth.nextInt(level.getRandom(), 20, 40));
+                            level.scheduleTick(blockpos, BlockInit.MODDED_OBSIDIAN.get(),
+                                    Mth.nextInt(level.getRandom(), 20, 40));
                         }
                     }
                 }
             }
-
         }
     }
 
