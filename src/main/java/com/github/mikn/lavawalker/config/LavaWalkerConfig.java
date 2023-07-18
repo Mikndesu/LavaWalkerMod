@@ -21,6 +21,7 @@
 
 package com.github.mikn.lavawalker.config;
 
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.common.ForgeConfigSpec;
 
 public class LavaWalkerConfig {
@@ -40,12 +41,18 @@ public class LavaWalkerConfig {
     public static final ForgeConfigSpec SPEC;
 
     public static final ForgeConfigSpec.ConfigValue<Integer> max_enchantment_level;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> exclusiveWithFrostWalker;
+    public static final ForgeConfigSpec.ConfigValue<Boolean> isTreasure;
     public static final ForgeConfigSpec.EnumValue<MeltSpeedEnum> meltSpeed;
+    public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> rarity;
 
     static {
         BUILDER.push("Config for LavaWalker Enchantment Mod");
+        exclusiveWithFrostWalker = BUILDER.comment("").define("exclusiveWithFrostWalker", true);
+        isTreasure = BUILDER.comment("").define("isTreasure", true);
         max_enchantment_level = BUILDER.comment("Maximum Level of Lavawalker").define("max_enchantment_level", 2);
         meltSpeed = BUILDER.comment("How fast obsidians melt").defineEnum("meltSpeed", MeltSpeedEnum.NORMAL);
+        rarity = BUILDER.comment("").defineEnum("rarity", Enchantment.Rarity.RARE);
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
