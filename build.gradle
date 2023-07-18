@@ -23,7 +23,7 @@ apply plugin: 'maven-publish'
 
 version = project.mod_version
 group = 'com.mikn.lava_walker'
-archivesBaseName = 'lava_walker'
+archivesBaseName = 'forge-lava_walker'
 
 java.toolchain.languageVersion = JavaLanguageVersion.of(17)
 
@@ -118,6 +118,10 @@ curseforge {
             id = project.curseforge_project_id
             releaseType = "release"
             addGameVersion "1.19.4"
+            addGameVersion "1.19.3"
+            addGameVersion "1.19.2"
+            addGameVersion "1.19.1"
+            addGameVersion "1.19"
             addGameVersion "Java 17"
             addGameVersion "Forge"
             mainArtifact(jar.archivePath) {
@@ -141,7 +145,7 @@ modrinth {
     	versionNumber = project.version
     	versionName = project.archivesBaseName
     	uploadFile = jar
-    	gameVersions = ['1.19.4']
+    	gameVersions = ['1.19.4','1.19.3','1.19.2','1.19.1','1.19']
     	loaders = ['forge']
     	dependencies {
     	}
