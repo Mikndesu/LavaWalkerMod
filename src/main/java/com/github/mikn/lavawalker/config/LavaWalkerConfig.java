@@ -48,11 +48,11 @@ public class LavaWalkerConfig {
 
     static {
         BUILDER.push("Config for LavaWalker Enchantment Mod");
-        exclusiveWithFrostWalker = BUILDER.comment("").define("exclusiveWithFrostWalker", true);
-        isTreasure = BUILDER.comment("").define("isTreasure", true);
-        max_enchantment_level = BUILDER.comment("Maximum Level of Lavawalker").define("max_enchantment_level", 2);
-        meltSpeed = BUILDER.comment("How fast obsidians melt").defineEnum("meltSpeed", MeltSpeedEnum.NORMAL);
-        rarity = BUILDER.comment("").defineEnum("rarity", Enchantment.Rarity.RARE);
+        exclusiveWithFrostWalker = BUILDER.comment("Lavawalker is exclusive with Frostwalker").define("exclusiveWithFrostWalker", true);
+        isTreasure = BUILDER.comment("Lavawalker is a treasure enchantment").define("isTreasure", true);
+        max_enchantment_level = BUILDER.comment("Maximum level of Lavawalker").define("max_enchantment_level", 2);
+        meltSpeed = BUILDER.comment("Obsidian melting velocity").defineEnum("meltSpeed", MeltSpeedEnum.NORMAL);
+        rarity = BUILDER.comment("Frequency of appearance of Lavawalker").defineEnum("rarity", Enchantment.Rarity.RARE);
         BUILDER.pop();
         SPEC = BUILDER.build();
     }
