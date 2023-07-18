@@ -28,11 +28,12 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.material.Material;
-import net.minecraft.world.level.material.MaterialColor;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
+import net.minecraft.world.level.material.MapColor;
 
 import com.github.mikn.lavawalker.config.LavaWalkerConfig;
 
@@ -41,8 +42,8 @@ public class ModdedObsidian extends Block {
     private static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
     public ModdedObsidian() {
-        super(Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).requiresCorrectToolForDrops()
-                .strength(50.0f, 1200.0f).lightLevel((p_235435_0_) -> 10));
+        super(BlockBehaviour.Properties.m_284310_().m_284180_(MapColor.f_283927_).m_280658_(NoteBlockInstrument.BASEDRUM)
+                .requiresCorrectToolForDrops().strength(50.0f, 1200.0f));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(1)));
     }
 
