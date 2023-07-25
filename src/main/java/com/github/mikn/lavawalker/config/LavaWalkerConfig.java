@@ -40,7 +40,6 @@ public class LavaWalkerConfig implements ConfigData {
             return this.value;
         }
     }
-    public boolean isMinable = false;
     @RequiresRestart
     public boolean isTreasure = true;
     public boolean shouldExclusiveWithFrost = true;
