@@ -62,7 +62,7 @@ public class LavaWalkerEnchantment extends Enchantment {
     }
 
     public static void onEntityMoved(LivingEntity livingEntity, Level level, BlockPos blockPos, int enchantmentLevel) {
-        if (!livingEntity.isOnGround()) {
+        if (!livingEntity.onGround()) {
             return;
         }
         BlockState blockState = BlockInit.MODDED_OBSIDIAN.get().defaultBlockState();

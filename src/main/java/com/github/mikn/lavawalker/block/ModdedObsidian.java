@@ -42,7 +42,7 @@ public class ModdedObsidian extends Block {
     private static final IntegerProperty AGE = IntegerProperty.create("age", 0, 3);
 
     public ModdedObsidian() {
-        super(BlockBehaviour.Properties.m_284310_().m_284180_(MapColor.f_283927_).m_280658_(NoteBlockInstrument.BASEDRUM)
+        super(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).instrument(NoteBlockInstrument.BASEDRUM)
                 .requiresCorrectToolForDrops().strength(50.0f, 1200.0f));
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, Integer.valueOf(1)));
     }
