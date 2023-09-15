@@ -41,7 +41,7 @@ public class FrostWalkerEnchantmentMixin extends Enchantment {
     }
 
     @Inject(method = "checkCompatibility(Lnet/minecraft/world/item/enchantment/Enchantment;)Z", at = @At("RETURN"), cancellable = true)
-    private void inject(Enchantment enchantment, CallbackInfoReturnable<Boolean> cir) {
+    private void lava_walker$checkCompatibility(Enchantment enchantment, CallbackInfoReturnable<Boolean> cir) {
         cir.setReturnValue(super.checkCompatibility(enchantment) && enchantment != Enchantments.DEPTH_STRIDER
         && LavaWalker.HOLDER.shouldExclusiveWithFrost ? enchantment != EnchantmentInit.LAVA_WALKER : true);
     }

@@ -34,7 +34,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
     @Inject(method = "onChangedBlock(Lnet/minecraft/core/BlockPos;)V", at = @At("HEAD"))
-    private void inject(BlockPos blockPos, CallbackInfo ci) {
+    private void lava_walker$onChangedBlock(BlockPos blockPos, CallbackInfo ci) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         int k = EnchantmentHelper.getEnchantmentLevel(EnchantmentInit.LAVA_WALKER, livingEntity);
         if (k > 0) {
