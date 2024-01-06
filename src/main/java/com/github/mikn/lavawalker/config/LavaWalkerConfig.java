@@ -22,33 +22,37 @@
 package com.github.mikn.lavawalker.config;
 
 import net.minecraft.world.item.enchantment.Enchantment;
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 
 public class LavaWalkerConfig {
 
     public enum MeltSpeedEnum {
         VERY_SLOW(5), SLOW(4), NORMAL(3), FAST(2), VERY_FAST(1);
+
         private final int value;
+
         MeltSpeedEnum(final int value) {
             this.value = value;
         }
+
         public int getInt() {
             return this.value;
         }
     }
 
-    public static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
-    public static final ForgeConfigSpec SPEC;
+    public static final ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+    public static final ModConfigSpec SPEC;
 
-    public static final ForgeConfigSpec.ConfigValue<Integer> max_enchantment_level;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> exclusiveWithFrostWalker;
-    public static final ForgeConfigSpec.ConfigValue<Boolean> isTreasure;
-    public static final ForgeConfigSpec.EnumValue<MeltSpeedEnum> meltSpeed;
-    public static final ForgeConfigSpec.EnumValue<Enchantment.Rarity> rarity;
+    public static final ModConfigSpec.ConfigValue<Integer> max_enchantment_level;
+    public static final ModConfigSpec.ConfigValue<Boolean> exclusiveWithFrostWalker;
+    public static final ModConfigSpec.ConfigValue<Boolean> isTreasure;
+    public static final ModConfigSpec.EnumValue<MeltSpeedEnum> meltSpeed;
+    public static final ModConfigSpec.EnumValue<Enchantment.Rarity> rarity;
 
     static {
         BUILDER.push("Config for LavaWalker Enchantment Mod");
-        exclusiveWithFrostWalker = BUILDER.comment("Lavawalker is exclusive with Frostwalker").define("exclusiveWithFrostWalker", true);
+        exclusiveWithFrostWalker = BUILDER.comment("Lavawalker is exclusive with Frostwalker")
+                .define("exclusiveWithFrostWalker", true);
         isTreasure = BUILDER.comment("Lavawalker is a treasure enchantment").define("isTreasure", true);
         max_enchantment_level = BUILDER.comment("Maximum level of Lavawalker").define("max_enchantment_level", 2);
         meltSpeed = BUILDER.comment("Obsidian melting velocity").defineEnum("meltSpeed", MeltSpeedEnum.NORMAL);

@@ -1,13 +1,12 @@
-modLoader="javafml"
-loaderVersion="[36,)"
-license="MIT License"
+modLoader = "javafml"
+loaderVersion = "[36,)"
+license = "MIT License"
 [[mods]]
-modId="lava_walker"
-version="${file.jarVersion}"
-displayName="LavaWalker Enchantment"
-logoFile="examplemod.png"
-authors="Mikn"
-description='''
+modId = "${mod_id}"
+version = "${mod_version}"
+displayName = "${mod_name}"
+authors = "${mod_authors}"
+description = '''
 LavaWalker generates obsidians as you walk over
 lava. Generated Obsidians melt into lava through
 crying obsidians over time.
@@ -17,14 +16,14 @@ crying obsidians over time.
 に戻ります。
 '''
 [[dependencies.lava_walker]]
-    modId="forge"
-    mandatory=true
-    versionRange="[36,)"
-    ordering="NONE"
-    side="BOTH"
+modId = "neoforge"
+type = "required"
+versionRange = "${neo_version_range}"
+ordering = "NONE"
+side = "BOTH"
 [[dependencies.lava_walker]]
-    modId="minecraft"
-    mandatory=true
-    versionRange="[1.20, 1.21)"
-    ordering="NONE"
-    side="BOTH"
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"

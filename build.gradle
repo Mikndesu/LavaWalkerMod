@@ -1,152 +1,82 @@
-buildscript {
-    repositories {
-        maven { url = 'https://maven.minecraftforge.net' }
-        maven { url = 'https://repo.spongepowered.org/repository/maven-public/' }
-        maven { url = 'https://maven.parchmentmc.org' }
-        maven { url = 'https://plugins.gradle.org/m2/' }
-        mavenCentral()
-    }
-    dependencies {
-        classpath group: 'net.minecraftforge.gradle', name: 'ForgeGradle', version: '5.1.+', changing: true
-        classpath group: 'org.spongepowered', name: 'mixingradle', version: '0.7-SNAPSHOT'
-        classpath 'gradle.plugin.com.matthewprenger:CurseGradle:1.4.0'
-        classpath 'com.modrinth.minotaur:Minotaur:2.8.2'
-        classpath 'org.parchmentmc:librarian:1.+'
-    }
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle.userdev' version '7.0.57'
+    id 'com.matthewprenger.cursegradle' version '1.4.0'
+    id 'com.modrinth.minotaur' version "2.+"
 }
-apply plugin: 'net.minecraftforge.gradle'
-apply plugin: 'org.parchmentmc.librarian.forgegradle'
-apply plugin: 'org.spongepowered.mixin'
-apply plugin: 'com.matthewprenger.cursegradle'
-apply plugin: 'com.modrinth.minotaur'
-apply plugin: 'maven-publish'
 
 version = project.mod_version
 group = 'com.mikn.lava_walker'
 archivesBaseName = 'forge-lava_walker'
 
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
-
-println('Java: ' + System.getProperty('java.version') + ' JVM: ' + System.getProperty('java.vm.version') + '(' + System.getProperty('java.vendor') + ') Arch: ' + System.getProperty('os.arch'))
-minecraft {
-    mappings channel: 'parchment', version: project.parchment_version
-    runs {
-        client {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-
-            mods {
-                lava_walker {
-                    source sourceSets.main
-                }
-            }
-        }
-        server {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            mods {
-                lava_walker {
-                    source sourceSets.main
-                }
-            }
-        }
-        data {
-            workingDirectory project.file('run')
-            property 'forge.logging.markers', 'REGISTRIES'
-            property 'forge.logging.console.level', 'debug'
-            args '--mod', 'lava_walker', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
-            mods {
-                lava_walker {
-                    source sourceSets.main
-                }
-            }
-        }
-    }
+repositories {
+    mavenLocal()
 }
 
-mixin {
-    add sourceSets.main, "lava_walker.refmap.json"
-    config "lava_walker.mixins.json"
+java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+runs {
+    configureEach {
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
+        modSource project.sourceSets.main
+    }
+
+    client {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        programArgument '--nogui'
+    }
+
+    gameTestServer {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+
+    data {
+        programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+    }
 }
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
-repositories {
-    maven { url 'https://modmaven.dev/' }
-}
 
 dependencies {
-    minecraft "net.minecraftforge:forge:${project.forge_version}"
-    annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
+    implementation "net.neoforged:neoforge:${neo_version}"
 }
 
-jar {
-    manifest {
-        attributes([
-                "Specification-Title"     : "Lava Walker Enchantment",
-                "Specification-Vendor"    : "Mikn",
-                "Specification-Version"   : "1",
-                "Implementation-Title"    : project.name,
-                "Implementation-Version"  : project.jar.archiveVersion,
-                "Implementation-Vendor"   : "Mikn",
-                "Implementation-Timestamp": new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
-        ])
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version   : minecraft_version, minecraft_version_range: minecraft_version_range,
+            neo_version         : neo_version, neo_version_range: neo_version_range,
+            loader_version_range: loader_version_range,
+            mod_id              : mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
+            mod_authors         : mod_authors,
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/mods.toml']) {
+        expand replaceProperties + [project: project]
     }
 }
 
-jar.finalizedBy('reobfJar')
-
 publishing {
     publications {
-        mavenJava(MavenPublication) {
-            artifact jar
+        register('mavenJava', MavenPublication) {
+            from components.java
         }
     }
     repositories {
         maven {
-            url "file://${project.projectDir}/mcmodsrepo"
+            url "file://${project.projectDir}/repo"
         }
     }
 }
 
-curseforge {
-    if (project.hasProperty("curse_api_key") || System.getenv("curse_api_key") != null) {
-        apiKey = project.hasProperty("curse_api_key") ? project.property("curse_api_key") : System.getenv("curse_api_key")
-        project {
-            id = project.curseforge_project_id
-            releaseType = "release"
-            addGameVersion "1.20.1"
-            addGameVersion "1.20"
-            addGameVersion "Java 17"
-            addGameVersion "Forge"
-            mainArtifact(jar.archivePath) {
-                displayName = "${project.archivesBaseName}_${project.version}"
-            }
-            afterEvaluate {
-                uploadTask.dependsOn("build")
-            }
-        }
-    }
-    options {
-        forgeGradleIntegration = false
-        javaVersionAutoDetect = false
-    }
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
 }
-
-modrinth {
-    if (project.hasProperty("modrinth_token") || System.getenv("modrinth_token") != null) {
-        token = project.hasProperty("modrinth_token") ? project.property("modrinth_token") : System.getenv("modrinth_token")
-		projectId = project.modrinth_project_id
-    	versionNumber = project.version
-    	versionName = project.archivesBaseName
-    	uploadFile = jar
-    	gameVersions = ['1.20','1.20.1']
-    	loaders = ['forge']
-    	dependencies {
-    	}
-    }
-}
-tasks.modrinth.dependsOn("build")
-

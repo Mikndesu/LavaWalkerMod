@@ -29,13 +29,12 @@ import com.github.mikn.lavawalker.init.BlockInit;
 import com.github.mikn.lavawalker.init.EnchantmentInit;
 import com.github.mikn.lavawalker.init.ItemInit;
 
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(LavaWalker.MODID)
 public class LavaWalker {
@@ -49,7 +48,7 @@ public class LavaWalker {
         BlockInit.BLOCKS.register(bus);
         ItemInit.ITEMS.register(bus);
         EnchantmentInit.ENCHANTMENTS.register(bus);
-        MinecraftForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.register(this);
     }
 
 }

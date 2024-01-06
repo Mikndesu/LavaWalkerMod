@@ -24,11 +24,11 @@ package com.github.mikn.lavawalker.init;
 import com.github.mikn.lavawalker.LavaWalker;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ItemInit {
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, LavaWalker.MODID);
-    public static final RegistryObject<Item> MODDED_OBSIDIAN = ITEMS.register("modded_obsidian", () -> new BlockItem(BlockInit.MODDED_OBSIDIAN.get(), new Item.Properties()));
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(LavaWalker.MODID);
+    public static final DeferredItem<Item> MODDED_OBSIDIAN = ITEMS.register("modded_obsidian",
+            () -> new BlockItem(BlockInit.MODDED_OBSIDIAN.get(), new Item.Properties()));
 }
