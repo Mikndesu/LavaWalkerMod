@@ -21,6 +21,8 @@
 
 package com.github.mikn.lavawalker;
 
+import javax.annotation.Nonnull;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -33,8 +35,6 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModLoadingContext;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.neoforged.neoforge.common.NeoForge;
 
 @Mod(LavaWalker.MODID)
 public class LavaWalker {
@@ -42,13 +42,12 @@ public class LavaWalker {
     public static final String MODID = "lava_walker";
     public static final Logger LOGGER = LogManager.getLogger("LavaWalker/Main");
 
-    public LavaWalker() {
-        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, LavaWalkerConfig.SPEC, "lava_walker-common.toml");
-        BlockInit.BLOCKS.register(bus);
-        ItemInit.ITEMS.register(bus);
-        EnchantmentInit.ENCHANTMENTS.register(bus);
-        NeoForge.EVENT_BUS.register(this);
+    public LavaWalker(@Nonnull IEventBus modEventBus) {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON,
+                LavaWalkerConfig.SPEC, "lava_walker-common.toml");
+        BlockInit.BLOCKS.register(modEventBus);
+        ItemInit.ITEMS.register(modEventBus);
+        EnchantmentInit.ENCHANTMENTS.register(modEventBus);
     }
 
 }
