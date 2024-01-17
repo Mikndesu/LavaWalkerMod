@@ -80,3 +80,40 @@ publishing {
 tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
+
+curseforge {
+    if (project.hasProperty("curse_api_key") || System.getenv("curse_api_key") != null) {
+        apiKey = project.hasProperty("curse_api_key") ? project.property("curse_api_key") : System.getenv("curse_api_key")
+        project {
+            id = project.curseforge_project_id
+            releaseType = "release"
+            addGameVersion "1.20.4"
+            addGameVersion "Java 17"
+            addGameVersion "NeoForge"
+            mainArtifact(jar.archivePath) {
+                displayName = "${project.archivesBaseName}_${project.version}"
+            }
+            afterEvaluate {
+                uploadTask.dependsOn("build")
+            }
+        }
+    }
+    options {
+        forgeGradleIntegration = false
+        javaVersionAutoDetect = false
+    }
+}
+
+modrinth {
+    if (project.hasProperty("modrinth_token") || System.getenv("modrinth_token") != null) {
+        token = project.hasProperty("modrinth_token") ? project.property("modrinth_token") : System.getenv("modrinth_token")
+		projectId = project.modrinth_project_id
+    	versionNumber = project.version
+    	versionName = project.archivesBaseName
+    	uploadFile = jar
+    	gameVersions = ['1.20','1.20.1']
+    	dependencies {
+    	}
+    }
+}
+tasks.modrinth.dependsOn("build")
