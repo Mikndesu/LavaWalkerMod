@@ -39,7 +39,7 @@ dependencies {
 	minecraft("com.mojang:minecraft:${minecraft_version}")
 	mappings(loom.layered {
     	officialMojangMappings()
-    	parchment("org.parchmentmc.data:parchment-1.20.2:2023.10.22@zip")
+    	parchment("org.parchmentmc.data:parchment-1.20.3:2023.12.31@zip")
   	})
 	modImplementation("net.fabricmc:fabric-loader:${loader_version}")
 	modImplementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
@@ -80,7 +80,7 @@ curseforge {
 		id = curseforge_project_id
 		releaseType = "release"
 		addGameVersion("1.20")
-		addGameVersion("1.20.1")
+		addGameVersion("1.20.4")
         addGameVersion("1.20-Snapshot")
         addGameVersion("Java 17")
         addGameVersion("Fabric")
@@ -104,7 +104,7 @@ modrinth {
     versionNumber.set(mod_version)
     versionName.set(archives_base_name)
     uploadFile.set(tasks.remapJar.get())
-    gameVersions.addAll("1.20", "1.20.1")
+    gameVersions.addAll("1.20", "1.20.4")
     loaders.add("fabric")
     dependencies {
         required.project("fabric-api")
